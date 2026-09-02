@@ -3,1929 +3,1301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I.A. — Inteligência Artificial</title>
+<title>DevCademy — Aprenda a Programar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ===== CSS COMPLETO ===== */
 :root {
-  --bg: #0b0f17;
-  --sidebar-bg: #0e131c;
-  --card-bg: #141a24;
-  --card-border: #232b38;
-  --text: #f2f4f7;
-  --text-dim: #8b93a3;
-  --accent-blue: #4aa8ff;
-  --accent-orange: #e8973a;
-  --accent-green: #22c58b;
-  --accent-yellow: #f2b73d;
-  --accent-purple: #6b7ad1;
-  --accent-red: #e74c3c;
-  --node-bg: #232b38;
-  --node-border: #3a4557;
-  --sidebar-w: 250px;
-  --right-w: 340px;
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+  --bg-card: #1a2234;
+  --bg-card-hover: #1f2a3f;
+  --bg-input: #0d1421;
+  --border-color: #2a3448;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-green: #22c55e;
+  --accent-yellow: #eab308;
+  --accent-orange: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-pink: #ec4899;
+  --gradient-main: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --shadow-card: 0 4px 20px rgba(0,0,0,0.3);
+  --radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* { 
-  box-sizing: border-box; 
+* {
   margin: 0;
   padding: 0;
-}
-
-html, body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 body {
-  display: grid;
-  grid-template-columns: var(--sidebar-w) 1fr var(--right-w);
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
   min-height: 100vh;
 }
 
-a { color: inherit; text-decoration: none; }
-
 /* ===== SCROLLBAR ===== */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--card-border);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-dim);
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 32px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
 }
 
-/* ===== SIDEBAR ===== */
-.sidebar {
-  background: var(--sidebar-bg);
-  border-right: 1px solid var(--card-border);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: var(--sidebar-w);
-  height: 100vh;
-  padding: 28px 18px;
+.nav-left {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
-  z-index: 9999;
-  overflow-y: auto;
+  align-items: center;
+  gap: 40px;
 }
 
 .logo {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 800;
-  font-size: 28px;
+  font-size: 24px;
+  font-weight: 900;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text-primary);
+  background: var(--bg-card);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-btn {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-outline:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.btn-primary {
+  background: var(--gradient-main);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 80px 32px 60px;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(59, 130, 246, 0.15);
   color: var(--accent-blue);
-  padding-left: 8px;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 20px;
   letter-spacing: -1px;
 }
 
-.nav {
+.hero h1 .highlight {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 20px;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto 32px;
+}
+
+.hero-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: var(--text-dim);
-  font-weight: 600;
-  font-size: 15px;
-  transition: all .15s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-.nav-icon {
-  font-size: 18px;
-  width: 22px;
-  text-align: center;
-}
-
-.nav-item:hover {
-  background: #1a2230;
-  color: var(--text);
-}
-
-.nav-item.active {
-  background: #1c2536;
-  color: var(--text);
-}
-
-.nav-item.active::before {
-  content: '';
-  position: absolute;
-  left: -18px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 24px;
-  background: var(--accent-blue);
-  border-radius: 0 4px 4px 0;
-}
-
-.nav-item .badge {
-  margin-left: auto;
-  background: var(--accent-red);
-  color: #fff;
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-weight: 700;
-}
-
-/* ===== MAIN CONTENT ===== */
-.content {
-  grid-column: 2;
-  padding: 28px 40px 60px;
-  max-width: 100%;
-  overflow-y: auto;
-  max-height: 100vh;
-}
-
-/* Breadcrumb */
-.breadcrumb-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 20px 26px;
-  margin-bottom: 20px;
-}
-
-.crumbs {
-  font-size: 13px;
-  color: var(--text-dim);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
-.crumbs a {
-  color: var(--accent-blue);
-  font-weight: 600;
-}
-
-.crumbs a:hover {
-  text-decoration: underline;
-}
-
-.crumbs .sep { color: #4b5567; }
-
-.breadcrumb-card h1 {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  font-size: 26px;
-  font-weight: 700;
-}
-
-.breadcrumb-sub {
-  margin: 4px 0 0;
-  color: var(--text-dim);
-  font-size: 14px;
-}
-
-/* Chapter Progress */
-.chapter-progress {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin-bottom: 24px;
-}
-
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: var(--text-dim);
-}
-
-.progress-percent {
-  color: var(--accent-blue);
-  font-weight: 700;
-}
-
-.progress-bar {
-  height: 8px;
-  background: #232b38;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
-  border-radius: 4px;
-  transition: width 1s ease;
-}
-
-/* Modules Grid */
-.modules-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 24px;
-}
-
-.module-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
   gap: 16px;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.module-card:hover {
-  border-color: var(--accent-blue);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-
-.module-card.completed {
-  border-left: 4px solid var(--accent-green);
-}
-
-.module-card.completed:hover {
-  border-color: var(--accent-green);
-}
-
-.module-card.current {
-  border-left: 4px solid var(--accent-blue);
-  background: #1a2235;
-}
-
-.module-card.current:hover {
-  border-color: var(--accent-blue);
-}
-
-.module-card.locked {
-  opacity: 0.6;
-  border-left: 4px solid #4b5567;
-  cursor: not-allowed;
-}
-
-.module-card.locked:hover {
-  transform: none;
-  border-color: #4b5567;
-}
-
-.module-number {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #232b38;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 15px;
-  flex-shrink: 0;
-  color: var(--text-dim);
-}
-
-.module-card.completed .module-number {
-  background: var(--accent-green);
-  color: #fff;
-}
-
-.module-card.current .module-number {
-  background: var(--accent-blue);
-  color: #fff;
-}
-
-.module-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.module-content h3 {
-  margin: 0 0 4px;
-  font-size: 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.module-status {
-  font-size: 12px;
-  color: var(--text-dim);
-}
-
-.module-card.completed .module-status {
-  color: var(--accent-green);
-}
-
-.current-status {
-  color: var(--accent-blue) !important;
-}
-
-.locked-status {
-  color: #4b5567 !important;
-}
-
-.module-xp {
-  display: block;
-  font-size: 12px;
-  color: var(--accent-yellow);
-  font-weight: 600;
-  margin-top: 4px;
-}
-
-.continue-btn {
-  background: var(--accent-blue);
-  color: #fff;
-  border: none;
-  padding: 6px 18px;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 4px;
-}
-
-.continue-btn:hover {
-  background: #3a95e6;
-  transform: scale(1.05);
-}
-
-/* Brain Tip */
-.brain-tip {
-  background: linear-gradient(135deg, #1a2235, var(--card-bg));
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 20px 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-.tip-icon {
-  font-size: 42px;
-  flex-shrink: 0;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-.tip-content h3 {
-  margin: 0 0 4px;
-  color: var(--accent-yellow);
-  font-size: 16px;
-}
-
-.tip-content p {
-  margin: 0;
-  color: var(--text-dim);
-  font-size: 14px;
-}
-
-/* Games Section */
-.games-section {
-  margin-top: 8px;
-  margin-bottom: 28px;
-}
-
-.games-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.games-header h2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 22px;
-  margin: 0;
-}
-
-.games-subtitle {
-  color: var(--text-dim);
-  font-size: 14px;
-  margin: 0;
-}
-
-.games-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.game-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 28px 24px;
-  text-align: center;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.game-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.game-card.blooket::before {
-  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-}
-
-.game-card:hover::before {
-  opacity: 1;
-}
-
-.game-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent-blue);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-}
-
-.game-icon {
-  font-size: 52px;
-  margin-bottom: 12px;
-  display: block;
-}
-
-.game-card h3 {
-  margin: 0 0 8px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-}
-
-.game-card p {
-  color: var(--text-dim);
-  font-size: 14px;
-  margin: 0 0 18px;
-  line-height: 1.5;
-}
-
-.game-btn {
-  border: none;
-  padding: 12px 32px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.game-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.game-btn:active {
-  transform: scale(0.95);
-}
-
-.kahhot-btn {
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
-  color: #fff;
-}
-
-.blooket-btn {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: #fff;
-}
-
-/* Quiz Section */
-.quiz-section {
-  display: none;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 24px;
-  margin-top: 20px;
-  animation: slideDown 0.4s ease;
-}
-
-.quiz-section.active {
-  display: block;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.quiz-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.quiz-header h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-}
-
-.quiz-stats {
-  display: flex;
-  gap: 20px;
-  font-size: 14px;
-  color: var(--text-dim);
-}
-
-.quiz-stats span {
-  font-weight: 600;
-  color: var(--text);
-}
-
-.quiz-question {
-  margin-bottom: 24px;
-}
-
-.quiz-question h4 {
-  font-size: 18px;
-  margin-bottom: 16px;
-}
-
-.quiz-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.quiz-option {
-  background: #1a2230;
-  border: 2px solid var(--card-border);
-  border-radius: 10px;
-  padding: 16px;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-align: left;
-  font-weight: 500;
-}
-
-.quiz-option:hover {
-  border-color: var(--accent-blue);
-  background: #1c2536;
-}
-
-.quiz-option.selected {
-  border-color: var(--accent-blue);
-  background: #1c2536;
-}
-
-.quiz-option.correct {
-  border-color: var(--accent-green);
-  background: #1a2a22;
-}
-
-.quiz-option.wrong {
-  border-color: var(--accent-red);
-  background: #2a1a1a;
-}
-
-.quiz-option .option-letter {
-  display: inline-block;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--card-border);
-  text-align: center;
-  line-height: 28px;
-  font-weight: 700;
-  margin-right: 12px;
-  font-size: 13px;
-}
-
-.quiz-option.correct .option-letter {
-  background: var(--accent-green);
-}
-
-.quiz-option.wrong .option-letter {
-  background: var(--accent-red);
-}
-
-.quiz-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--card-border);
-}
-
-.quiz-progress {
-  font-size: 14px;
-  color: var(--text-dim);
-}
-
-.quiz-progress span {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.quiz-nav-btn {
-  background: var(--accent-blue);
-  color: #fff;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.quiz-nav-btn:hover {
-  background: #3a95e6;
-  transform: scale(1.02);
-}
-
-.quiz-nav-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.quiz-close-btn {
-  background: transparent;
-  color: var(--text-dim);
-  border: 1px solid var(--card-border);
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.quiz-close-btn:hover {
-  background: var(--card-border);
-  color: var(--text);
-}
-
-/* Quiz Ranking */
-.quiz-ranking {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--card-border);
-}
-
-.quiz-ranking h4 {
-  font-size: 14px;
-  color: var(--text-dim);
-  margin-bottom: 12px;
-}
-
-.ranking-list {
-  display: grid;
-  gap: 8px;
-}
-
-.ranking-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
-  background: #0d1119;
-  border-radius: 8px;
-}
-
-.ranking-position {
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--text-dim);
-  width: 30px;
-}
-
-.ranking-name {
-  flex: 1;
-  font-weight: 500;
-}
-
-.ranking-score {
-  font-weight: 700;
-  color: var(--accent-yellow);
-}
-
-/* ===== RIGHT PANEL ===== */
-.right-panel {
-  grid-column: 3;
-  padding: 28px 24px 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  overflow-y: auto;
-  max-height: 100vh;
-  background: var(--bg);
-}
-
-.stat-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  justify-content: flex-end;
   flex-wrap: wrap;
-  padding: 8px 0;
 }
 
-.stat-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--text);
-  background: var(--card-bg);
-  padding: 4px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--card-border);
-}
-
-.stat-pill .ic { font-size: 16px; }
-
-.stat-pill.lang {
-  background: linear-gradient(135deg, #7b7ff3, #6b7ad1);
-  color: #fff;
+.hero-btn {
+  padding: 14px 36px;
+  border-radius: 10px;
   border: none;
-}
-
-.panel-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 18px 20px;
-}
-
-.panel-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-
-.panel-head h3 {
-  margin: 0;
-  font-size: 16px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.panel-head a {
-  color: var(--accent-blue);
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.panel-head a:hover {
-  text-decoration: underline;
-}
-
-/* Level Card */
-.level-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.level-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #1c2536, #232b38);
-  border: 1px solid var(--card-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--accent-blue);
-  flex-shrink: 0;
-}
-
-.level-info { flex: 1; }
-
-.level-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 15px;
-  margin-bottom: 6px;
-}
-
-.level-xp {
-  color: var(--accent-orange);
-  font-size: 13px;
-  font-weight: 600;
-  background: rgba(232, 151, 58, 0.1);
-  padding: 2px 10px;
-  border-radius: 12px;
-}
-
-.level-bar {
-  height: 6px;
-  background: #232b38;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 6px;
-}
-
-.level-bar span {
-  display: block;
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
-  border-radius: 4px;
-  transition: width 1s ease;
-}
-
-.level-sub {
-  font-size: 13px;
-  color: var(--text-dim);
-}
-
-/* League Card */
-.league-card {
-  border-color: rgba(74, 168, 255, 0.2);
-}
-
-.league-card .panel-head {
-  margin-bottom: 8px;
-}
-
-.league-badge {
-  font-size: 28px;
-}
-
-.league-rank-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.rank-number {
   font-weight: 700;
   font-size: 16px;
-  color: var(--accent-blue);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.rank-next {
-  color: var(--text-dim);
-  font-size: 13px;
+.hero-btn.primary {
+  background: var(--gradient-main);
+  color: white;
 }
 
-/* Victory Card */
-.victory-card {
-  background: linear-gradient(135deg, #1a2235, var(--card-bg));
-  border-color: var(--accent-yellow);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+.hero-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
 }
 
-.victory-card::before {
-  content: '✨';
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  font-size: 60px;
-  opacity: 0.1;
+.hero-btn.secondary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
 }
 
-.victory-badge {
-  font-size: 52px;
-  margin-bottom: 8px;
-  display: block;
+.hero-btn.secondary:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
 }
 
-.victory-card h3 {
-  margin: 0 0 8px;
-  color: var(--accent-yellow);
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-}
-
-.victory-card p {
-  color: var(--text-dim);
-  font-size: 14px;
-  margin: 0 0 16px;
-}
-
-.victory-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 16px;
+/* ===== STATS BAR ===== */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  padding: 40px 32px;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  flex-wrap: wrap;
 }
 
 .stat-item {
-  background: #0d1119;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid var(--card-border);
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: 800;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .stat-label {
-  display: block;
-  font-size: 11px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: 4px;
 }
 
-.stat-value {
-  display: block;
-  font-weight: 700;
-  font-size: 16px;
-  margin-top: 2px;
+/* ===== SECTION ===== */
+.section {
+  padding: 60px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.victory-criteria {
-  background: #0d1119;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 16px;
-  border: 1px solid var(--card-border);
-  text-align: left;
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
 }
 
-.victory-criteria span {
-  font-weight: 600;
-  font-size: 13px;
-  display: block;
-  margin-bottom: 4px;
-  color: var(--accent-yellow);
+.section-header h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 12px;
 }
 
-.victory-criteria p {
-  margin: 0;
-  font-size: 13px;
-  color: var(--text-dim);
-  text-align: left;
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.victory-actions {
-  display: flex;
-  gap: 10px;
+/* ===== COURSE GRID ===== */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
-.victory-actions button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 13px;
+.course-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: var(--transition);
   cursor: pointer;
-  transition: all 0.2s;
-}
-
-.victory-actions button:hover {
-  transform: scale(1.02);
-}
-
-.rank-btn {
-  background: var(--card-border);
-  color: var(--text);
-}
-
-.rank-btn:hover {
-  background: #2a3345;
-}
-
-.play-again-btn {
-  background: var(--accent-blue);
-  color: #fff;
-}
-
-.play-again-btn:hover {
-  background: #3a95e6;
-}
-
-/* Missions */
-.mission {
-  margin-bottom: 16px;
-}
-
-.mission:last-child { margin-bottom: 0; }
-
-.mission-label {
-  font-size: 13px;
-  color: var(--text-dim);
-  margin-bottom: 6px;
-}
-
-.mission-bar {
   position: relative;
-  height: 8px;
-  background: #232b38;
-  border-radius: 4px;
-  margin-bottom: 4px;
   overflow: hidden;
 }
 
-.mission-bar .mission-fill {
+.course-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-blue);
+  box-shadow: var(--shadow-card);
+}
+
+.course-card .icon {
+  font-size: 36px;
+  margin-bottom: 12px;
   display: block;
+}
+
+.course-card h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.course-card p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.course-progress {
+  height: 4px;
+  background: var(--bg-input);
+  border-radius: 2px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.course-progress .fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+  background: var(--gradient-main);
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* ===== CODE EDITOR ===== */
+.editor-section {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  margin: 32px 0;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.editor-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.editor-tab {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.editor-tab.active {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.editor-tab:hover:not(.active) {
+  background: var(--bg-input);
+}
+
+.editor-body {
+  padding: 20px;
+  background: var(--bg-input);
+  position: relative;
+}
+
+.editor-body pre {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-primary);
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.editor-body .line-numbers {
+  color: var(--text-muted);
+  margin-right: 20px;
+  user-select: none;
+}
+
+.editor-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+}
+
+.editor-footer .tests {
+  display: flex;
+  gap: 12px;
+}
+
+.test-badge {
+  padding: 4px 12px;
   border-radius: 4px;
-  transition: width 1s ease;
-}
-
-.mission-icon {
-  position: absolute;
-  right: -4px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 15px;
-}
-
-.mission-count {
-  text-align: right;
   font-size: 12px;
-  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.test-badge.pass {
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--accent-green);
+}
+
+.test-badge.fail {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--accent-red);
+}
+
+.editor-footer .run-btn {
+  padding: 8px 24px;
+  background: var(--gradient-main);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.editor-footer .run-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* ===== STREAK ===== */
+.streak-section {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.streak-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.streak-number {
+  font-size: 56px;
+  font-weight: 900;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.streak-label {
+  color: var(--text-secondary);
+  font-size: 16px;
+  margin: 4px 0 20px;
+}
+
+.streak-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.streak-day {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  background: var(--bg-input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.streak-day.active {
+  background: var(--accent-blue);
+  color: white;
+}
+
+.streak-day.frozen {
+  background: var(--accent-purple);
+  color: white;
+}
+
+.streak-day.future {
+  opacity: 0.3;
+}
+
+/* ===== LEADERBOARD ===== */
+.leaderboard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.leaderboard-item:hover {
+  background: var(--bg-card-hover);
+}
+
+.leaderboard-item:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-rank {
+  width: 32px;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.leaderboard-rank.top1 { color: var(--accent-yellow); }
+.leaderboard-rank.top2 { color: var(--text-secondary); }
+.leaderboard-rank.top3 { color: var(--accent-orange); }
+
+.leaderboard-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gradient-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  font-size: 14px;
+}
+
+.leaderboard-name {
+  flex: 1;
+  font-weight: 600;
+}
+
+.leaderboard-name .badge {
+  font-size: 11px;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent-blue);
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-left: 8px;
+}
+
+.leaderboard-score {
+  font-weight: 700;
+  color: var(--accent-yellow);
+}
+
+/* ===== FEATURES ===== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-blue);
+}
+
+.feature-card .icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ===== CERTIFICATE ===== */
+.certificate-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.certificate-card .seal {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.certificate-card h3 {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.certificate-card .sub {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.certificate-card .course-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-blue);
+  padding: 8px 24px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  display: inline-block;
+  margin: 12px 0;
+}
+
+.certificate-card .btn-download {
+  padding: 10px 32px;
+  background: var(--gradient-main);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.certificate-card .btn-download:hover {
+  transform: scale(1.02);
+}
+
+/* ===== FAQ ===== */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.faq-item:hover {
+  border-color: var(--accent-blue);
+}
+
+.faq-item h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.faq-item p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  display: none;
+  margin-top: 8px;
+}
+
+.faq-item.open p {
+  display: block;
+}
+
+.faq-item .arrow {
+  float: right;
+  transition: var(--transition);
+}
+
+.faq-item.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 40px 32px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.footer .links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.footer .links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer .links a:hover {
+  color: var(--text-primary);
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1200px) {
-  body { grid-template-columns: var(--sidebar-w) 1fr; }
-  .right-panel { display: none; }
-}
-
-@media (max-width: 992px) {
-  .modules-grid {
+@media (max-width: 1024px) {
+  .streak-section {
     grid-template-columns: 1fr;
   }
   
-  .games-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .quiz-options {
+  .faq-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  body { display: block; }
-
-  .sidebar {
-    position: fixed;
-    top: auto;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 64px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0 6px;
-    border-right: none;
-    border-top: 1px solid var(--card-border);
-    gap: 0;
-    z-index: 9999;
+  .navbar {
+    padding: 0 16px;
   }
-
-  .logo { display: none; }
-
-  .nav {
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
-    gap: 0;
-  }
-
-  .nav-item {
-    flex-direction: column;
-    gap: 2px;
-    font-size: 10px;
-    padding: 6px 4px;
-    text-align: center;
-    border-radius: 6px;
-  }
-
-  .nav-item span:last-child {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 56px;
-    font-size: 9px;
-  }
-
-  .nav-icon { font-size: 18px; }
   
-  .nav-item.active::before {
+  .nav-links {
     display: none;
   }
-
-  .content {
-    margin-left: 0;
-    padding: 16px 14px 80px;
-    max-width: 100%;
-    max-height: none;
-  }
-
-  .breadcrumb-card {
-    padding: 16px 18px;
-  }
-
-  .breadcrumb-card h1 {
-    font-size: 20px;
-  }
-
-  .victory-stats {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .victory-actions {
-    flex-direction: column;
+  
+  .hero {
+    padding: 40px 16px;
   }
   
-  .games-header {
+  .hero h1 {
+    font-size: 32px;
+  }
+  
+  .hero p {
+    font-size: 16px;
+  }
+  
+  .stats-bar {
+    gap: 24px;
+    padding: 24px 16px;
+  }
+  
+  .section {
+    padding: 40px 16px;
+  }
+  
+  .section-header h2 {
+    font-size: 28px;
+  }
+  
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .editor-body pre {
+    font-size: 12px;
+  }
+  
+  .editor-footer {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .certificate-card {
+    padding: 24px;
   }
 }
 
 @media (max-width: 480px) {
-  .breadcrumb-card h1 {
-    font-size: 18px;
+  .hero h1 {
+    font-size: 26px;
   }
   
-  .module-card {
-    padding: 12px 14px;
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
   }
   
-  .module-content h3 {
-    font-size: 13px;
+  .stat-number {
+    font-size: 24px;
   }
   
-  .panel-card {
-    padding: 14px 16px;
-  }
-  
-  .victory-stats {
-    grid-template-columns: 1fr;
+  .streak-number {
+    font-size: 40px;
   }
 }
 
-/* ===== UTILITY ===== */
-.hidden {
-  display: none !important;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.mt-8 {
-  margin-top: 8px;
-}
-
-.mb-8 {
-  margin-bottom: 8px;
-}
-
-.gap-8 {
-  gap: 8px;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ===== ANIMAÇÕES ===== */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.fade-in {
-  animation: fadeIn 0.4s ease forwards;
+.fade-up {
+  animation: fadeUp 0.6s ease forwards;
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
-.shimmer {
-  background: linear-gradient(90deg, var(--card-bg) 25%, var(--card-border) 50%, var(--card-bg) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
+.pulse {
+  animation: pulse 2s infinite;
 }
 </style>
 </head>
 <body>
 
-  <!-- ===== SIDEBAR ===== -->
-  <aside class="sidebar">
-    <div class="logo">I.A</div>
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="nav-left">
+    <div class="logo">DevCademy</div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Início</a></li>
+      <li><a href="#">Cursos</a></li>
+      <li><a href="#">Liga</a></li>
+      <li><a href="#">Certificados</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn btn-outline">Entrar</button>
+    <button class="nav-btn btn-primary">Começar Grátis</button>
+  </div>
+</nav>
 
-    <nav class="nav">
-      <a href="#" class="nav-item active" data-page="jornada">
-        <span class="nav-icon">🚀</span>
-        <span>Jornada</span>
-      </a>
-      <a href="#" class="nav-item" data-page="pratica">
-        <span class="nav-icon">🛠️</span>
-        <span>Prática</span>
-      </a>
-      <a href="#" class="nav-item" data-page="projetos">
-        <span class="nav-icon">🎨</span>
-        <span>Projetos</span>
-      </a>
-      <a href="#" class="nav-item" data-page="clube">
-        <span class="nav-icon">🔥</span>
-        <span>Clube de Sequência</span>
-        <span class="badge">3</span>
-      </a>
-      <a href="#" class="nav-item" data-page="missoes">
-        <span class="nav-icon">🚩</span>
-        <span>Missões</span>
-      </a>
-      <a href="#" class="nav-item" data-page="lideres">
-        <span class="nav-icon">🏆</span>
-        <span>Tabela de Líderes</span>
-      </a>
-      <a href="#" class="nav-item" data-page="loja">
-        <span class="nav-icon">🏪</span>
-        <span>Loja</span>
-      </a>
-      <a href="#" class="nav-item" data-page="perfil">
-        <span class="nav-icon">🕶️</span>
-        <span>Perfil</span>
-      </a>
-      <a href="#" class="nav-item" data-page="mais">
-        <span class="nav-icon">⋯</span>
-        <span>Mais</span>
-      </a>
-    </nav>
-  </aside>
+<!-- ===== HERO ===== -->
+<section class="hero fade-up">
+  <div class="hero-badge">🚀 15+ linguagens • 200+ cursos</div>
+  <h1>Aprenda a programar de forma <span class="highlight">gratuita, divertida e eficaz</span></h1>
+  <p>Escreva código real, construa projetos e conquiste certificados. Tudo no seu navegador, sem instalação.</p>
+  <div class="hero-buttons">
+    <button class="hero-btn primary" onclick="scrollToCourses()">Ver todos os cursos →</button>
+    <button class="hero-btn secondary">Como funciona?</button>
+  </div>
+</section>
 
-  <!-- ===== MAIN ===== -->
-  <main class="content" id="mainContent">
-    <!-- Breadcrumb -->
-    <div class="breadcrumb-card">
-      <div class="crumbs">
-        <a href="#">Programa</a>
-        <span class="sep">›</span>
-        <span>Seção 1 · Capítulo 3</span>
+<!-- ===== STATS ===== -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number">200+</div>
+    <div class="stat-label">Cursos interativos</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">15+</div>
+    <div class="stat-label">Linguagens</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">50K+</div>
+    <div class="stat-label">Alunos ativos</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">4.9</div>
+    <div class="stat-label">Avaliação ⭐</div>
+  </div>
+</div>
+
+<!-- ===== COURSES ===== -->
+<section class="section" id="coursesSection">
+  <div class="section-header">
+    <h2>📚 Explore o catálogo completo</h2>
+    <p>Aprenda com lições interativas em mais de 15 linguagens de programação</p>
+  </div>
+
+  <div class="course-grid">
+    <div class="course-card">
+      <span class="icon">🐍</span>
+      <h3>Python Fundamentos</h3>
+      <p>Domine a sintaxe, estruturas de dados e lógica de programação com Python.</p>
+      <div class="course-meta">
+        <span>📘 42 lições</span>
+        <span>⭐ 4.8</span>
       </div>
-      <h1>Basic Operators</h1>
-      <p class="breadcrumb-sub">Aprenda os operadores básicos e sua utilização em expressões.</p>
+      <div class="course-progress"><div class="fill" style="width:65%"></div></div>
     </div>
 
-    <!-- Chapter Progress -->
-    <div class="chapter-progress">
-      <div class="progress-header">
-        <span>Progresso do capítulo</span>
-        <span class="progress-percent">75%</span>
+    <div class="course-card">
+      <span class="icon">🟨</span>
+      <h3>JavaScript Essencial</h3>
+      <p>Aprenda a criar interatividade na web com a linguagem mais popular do front-end.</p>
+      <div class="course-meta">
+        <span>📘 38 lições</span>
+        <span>⭐ 4.7</span>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:75%"></div>
-      </div>
+      <div class="course-progress"><div class="fill" style="width:40%"></div></div>
     </div>
 
-    <!-- Modules Grid -->
-    <div class="modules-grid" id="modulesGrid">
-      <div class="module-card completed" data-module="1">
-        <div class="module-number">1</div>
-        <div class="module-content">
-          <h3>Operadores Aritméticos</h3>
-          <span class="module-status">✅ Concluído</span>
-          <span class="module-xp">+100 XP</span>
-        </div>
+    <div class="course-card">
+      <span class="icon">🗄️</span>
+      <h3>SQL para Análise</h3>
+      <p>Consulte bancos de dados, filtre dados e extraia insights com SQL.</p>
+      <div class="course-meta">
+        <span>📘 28 lições</span>
+        <span>⭐ 4.9</span>
       </div>
-
-      <div class="module-card completed" data-module="2">
-        <div class="module-number">2</div>
-        <div class="module-content">
-          <h3>Operadores de Comparação</h3>
-          <span class="module-status">✅ Concluído</span>
-          <span class="module-xp">+100 XP</span>
-        </div>
-      </div>
-
-      <div class="module-card completed" data-module="3">
-        <div class="module-number">3</div>
-        <div class="module-content">
-          <h3>Operadores Lógicos</h3>
-          <span class="module-status">✅ Concluído</span>
-          <span class="module-xp">+100 XP</span>
-        </div>
-      </div>
-
-      <div class="module-card current" data-module="4">
-        <div class="module-number">4</div>
-        <div class="module-content">
-          <h3>Exercícios Práticos</h3>
-          <span class="module-status current-status">▶ Continue aprendendo!</span>
-          <button class="continue-btn" onclick="startQuiz()">CONTINUAR</button>
-        </div>
-      </div>
-
-      <div class="module-card locked" data-module="5">
-        <div class="module-number">5</div>
-        <div class="module-content">
-          <h3>Desafios</h3>
-          <span class="module-status locked-status">🔒 Complete o nível anterior para desbloquear</span>
-        </div>
-      </div>
-
-      <div class="module-card locked" data-module="6">
-        <div class="module-number">6</div>
-        <div class="module-content">
-          <h3>Projeto: Calculadora Simples</h3>
-          <span class="module-status locked-status">🔒 Complete o nível anterior para desbloquear</span>
-        </div>
-      </div>
+      <div class="course-progress"><div class="fill" style="width:15%"></div></div>
     </div>
 
-    <!-- Brain Tip -->
-    <div class="brain-tip">
-      <div class="tip-icon">🧠</div>
-      <div class="tip-content">
-        <h3>Dica do Cérebro!</h3>
-        <p>Continue assim! Cada passo te deixa mais perto de seus objetivos! 🚀</p>
+    <div class="course-card">
+      <span class="icon">🌐</span>
+      <h3>HTML + CSS</h3>
+      <p>Crie sites bonitos e responsivos com as bases da web moderna.</p>
+      <div class="course-meta">
+        <span>📘 34 lições</span>
+        <span>⭐ 4.6</span>
       </div>
+      <div class="course-progress"><div class="fill" style="width:0%"></div></div>
     </div>
 
-    <!-- Games Section -->
-    <div class="games-section">
-      <div class="games-header">
-        <h2>Escolha um jogo!</h2>
-        <span class="games-subtitle">Aprenda brincando e dispute com seus amigos!</span>
+    <div class="course-card">
+      <span class="icon">☕</span>
+      <h3>Java para Iniciantes</h3>
+      <p>Aprenda a linguagem usada em milhões de aplicações empresariais.</p>
+      <div class="course-meta">
+        <span>📘 45 lições</span>
+        <span>⭐ 4.5</span>
       </div>
-
-      <div class="games-grid">
-        <div class="game-card kahhot">
-          <span class="game-icon">🎮</span>
-          <h3>Kahhot!</h3>
-          <p>Responda as perguntas corretamente e seja o mais rápido!</p>
-          <button class="game-btn kahhot-btn" onclick="startQuiz('kahhot')">Jogar Kahhot!</button>
-        </div>
-
-        <div class="game-card blooket">
-          <span class="game-icon">🎯</span>
-          <h3>Bloccket</h3>
-          <p>Cada acerto te faz avançar no mapa. Chegue até a linha de chegada!</p>
-          <button class="game-btn blooket-btn" onclick="startQuiz('blooket')">Jogar Bloccket!</button>
-        </div>
-      </div>
+      <div class="course-progress"><div class="fill" style="width:10%"></div></div>
     </div>
 
-    <!-- Quiz Section -->
-    <div class="quiz-section" id="quizSection">
-      <div class="quiz-header">
-        <h3 id="quizTitle">Kahhot!</h3>
-        <div class="quiz-stats">
-          <span>Pergunta <span id="currentQuestion">1</span> de <span id="totalQuestions">10</span></span>
-          <span>⏱️ <span id="timerDisplay">15</span>s</span>
-          <span>🏆 <span id="scoreDisplay">0</span></span>
-          <button class="quiz-close-btn" onclick="closeQuiz()">✕ Sair</button>
-        </div>
+    <div class="course-card">
+      <span class="icon">🤖</span>
+      <h3>IA com Python</h3>
+      <p>Introdução à inteligência artificial e machine learning com Python.</p>
+      <div class="course-meta">
+        <span>📘 36 lições</span>
+        <span>⭐ 4.9</span>
       </div>
+      <div class="course-progress"><div class="fill" style="width:0%"></div></div>
+    </div>
+  </div>
+</section>
 
-      <div class="quiz-question">
-        <h4 id="questionText">Qual operador é usado para verificar se dois valores são iguais em PHP?</h4>
-        <div class="quiz-options" id="quizOptions">
-          <!-- Options will be inserted by JS -->
-        </div>
+<!-- ===== CODE EDITOR ===== -->
+<section class="section">
+  <div class="section-header">
+    <h2>✏️ Aprenda fazendo</h2>
+    <p>Escreva código real no editor integrado e veja os resultados em tempo real</p>
+  </div>
+
+  <div class="editor-section">
+    <div class="editor-header">
+      <div class="editor-tabs">
+        <span class="editor-tab active">playground.js</span>
+        <span class="editor-tab">index.html</span>
+        <span class="editor-tab">style.css</span>
       </div>
-
-      <div class="quiz-actions">
-        <div class="quiz-progress">
-          Progresso: <span id="progressPercent">0%</span>
-        </div>
-        <button class="quiz-nav-btn" id="nextBtn" onclick="nextQuestion()">Próxima →</button>
+      <span style="color:var(--text-muted);font-size:13px;">🟢 Online</span>
+    </div>
+    <div class="editor-body">
+      <pre><span class="line-numbers">1  </span><span style="color:#8b5cf6;">const</span> <span style="color:#60a5fa;">greeting</span> = <span style="color:#fbbf24;">"Olá, DevCademy!"</span>
+<span class="line-numbers">2  </span>
+<span class="line-numbers">3  </span><span style="color:#8b5cf6;">function</span> <span style="color:#60a5fa;">sayHi</span>(name) {
+<span class="line-numbers">4  </span>  <span style="color:#8b5cf6;">return</span> <span style="color:#60a5fa;">greeting</span> + <span style="color:#fbbf24;">" "</span> + name
+<span class="line-numbers">5  </span>}
+<span class="line-numbers">6  </span>
+<span class="line-numbers">7  </span><span style="color:#fbbf24;">console</span>.<span style="color:#60a5fa;">log</span>(<span style="color:#60a5fa;">sayHi</span>(<span style="color:#fbbf24;">"Alex"</span>))
+</pre>
+    </div>
+    <div class="editor-footer">
+      <div class="tests">
+        <span class="test-badge pass">✅ Teste #1</span>
+        <span class="test-badge pass">✅ Teste #2</span>
+        <span class="test-badge fail">❌ Teste #3</span>
       </div>
-
-      <!-- Ranking -->
-      <div class="quiz-ranking" id="quizRanking">
-        <h4>🏅 Ranking</h4>
-        <div class="ranking-list" id="rankingList">
-          <!-- Ranking items inserted by JS -->
-        </div>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <span style="color:var(--text-muted);font-size:13px;">Input: "Alex" → Output: "Olá, DevCademy! Alex"</span>
+        <button class="run-btn">▶ Executar</button>
       </div>
     </div>
-  </main>
+  </div>
+</section>
 
-  <!-- ===== RIGHT PANEL ===== -->
-  <aside class="right-panel">
-    <div class="stat-bar">
-      <div class="stat-pill lang">IA</div>
-      <div class="stat-pill"><span class="ic">💧</span>99</div>
-      <div class="stat-pill"><span class="ic">💎</span>99</div>
-      <div class="stat-pill"><span class="ic">❤️</span>1 / 5</div>
-    </div>
-
-    <!-- Level Card -->
-    <div class="panel-card level-card">
-      <div class="level-icon">#</div>
-      <div class="level-info">
-        <div class="level-row">
-          <strong>Nível 26</strong>
-          <span class="level-xp">Giga</span>
-        </div>
-        <div class="level-bar"><span style="width:22%"></span></div>
-        <div class="level-sub">Faltam 4.005 XP</div>
+<!-- ===== STREAK ===== -->
+<section class="section">
+  <div class="streak-section">
+    <div class="streak-left">
+      <div class="streak-number">12</div>
+      <div class="streak-label">🔥 dias de ofensiva</div>
+      <p style="color:var(--text-secondary);font-size:14px;margin-bottom:16px;">Volte amanhã para manter sua ofensiva!</p>
+      <div style="display:flex;gap:16px;">
+        <span style="background:var(--bg-input);padding:6px 16px;border-radius:20px;font-size:13px;">🧊 Freeze: 2</span>
+        <span style="background:var(--bg-input);padding:6px 16px;border-radius:20px;font-size:13px;">🎯 Dia 5 de 7</span>
       </div>
     </div>
-
-    <!-- League Card -->
-    <div class="panel-card league-card">
-      <div class="panel-head">
-        <h3>Elite Liga</h3>
-        <span class="league-badge">👑</span>
+    <div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px;color:var(--text-secondary);font-size:13px;">
+        <span>Janeiro 2026</span>
+        <span>Dia 1 de 31</span>
       </div>
-      <div class="league-rank-info">
-        <span class="rank-number">Ranqueado #13</span>
-        <span class="rank-next">Só 1 XP para ultrapassar #12</span>
+      <div class="streak-calendar" id="calendar">
+        <!-- Generated by JS -->
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Victory Card -->
-    <div class="panel-card victory-card">
-      <span class="victory-badge">🏆</span>
-      <h3>Você é o VENCEDOR!</h3>
-      <p>Parabéns! 🎉 Você foi o mais rápido e acertou mais perguntas!</p>
-      
-      <div class="victory-stats">
-        <div class="stat-item">
-          <span class="stat-label">Tempo</span>
-          <span class="stat-value">01:23</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">Acertos</span>
-          <span class="stat-value">15/15</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">XP ganho</span>
-          <span class="stat-value">+150</span>
-        </div>
-      </div>
+<!-- ===== LEADERBOARD ===== -->
+<section class="section">
+  <div class="section-header">
+    <h2>🏆 Liga dos Desafiadores</h2>
+    <p>Os 5 melhores avançam para a próxima divisão</p>
+  </div>
 
-      <div class="victory-criteria">
-        <span>🏅 Critério de vitória</span>
-        <p>Quem responder mais rápido e com mais acertos ganha. Não adianta ser rápido e errar!</p>
-      </div>
-
-      <div class="victory-actions">
-        <button class="rank-btn">Ver ranking</button>
-        <button class="play-again-btn">Jogar novamente</button>
-      </div>
+  <div class="leaderboard">
+    <div class="leaderboard-item">
+      <span class="leaderboard-rank top1">#1</span>
+      <div class="leaderboard-avatar" style="background:var(--accent-yellow);">A</div>
+      <span class="leaderboard-name">Alex <span class="badge">🔥 7+ dias</span></span>
+      <span class="leaderboard-score">2.840 XP</span>
     </div>
-
-    <!-- Missions -->
-    <div class="panel-card missions-card">
-      <div class="panel-head">
-        <h3>Missões diárias</h3>
-        <a href="#">Ver</a>
-      </div>
-
-      <div class="mission">
-        <div class="mission-label">Conclua uma atividade de aprendizagem</div>
-        <div class="mission-bar">
-          <span class="mission-fill" style="width:100%"></span>
-          <span class="mission-icon">🎯</span>
-        </div>
-        <div class="mission-count">1/1</div>
-      </div>
-
-      <div class="mission">
-        <div class="mission-label">Ganhar 50 XP</div>
-        <div class="mission-bar">
-          <span class="mission-fill" style="width:100%"></span>
-          <span class="mission-icon">🎯</span>
-        </div>
-        <div class="mission-count">50/50</div>
-      </div>
-
-      <div class="mission">
-        <div class="mission-label">Conclua uma atividade sem erros</div>
-        <div class="mission-bar">
-          <span class="mission-fill" style="width:35%"></span>
-          <span class="mission-icon">🎯</span>
-        </div>
-        <div class="mission-count">0/1</div>
-      </div>
+    <div class="leaderboard-item">
+      <span class="leaderboard-rank top2">#2</span>
+      <div class="leaderboard-avatar" style="background:var(--text-secondary);">J</div>
+      <span class="leaderboard-name">Jordan <span class="badge">🔥 7+ dias</span></span>
+      <span class="leaderboard-score">2.650 XP</span>
     </div>
-  </aside>
+    <div class="leaderboard-item">
+      <span class="leaderboard-rank top3">#3</span>
+      <div class="leaderboard-avatar" style="background:var(--accent-orange);">S</div>
+      <span class="leaderboard-name">Sam <span class="badge">🔥 7+ dias</span></span>
+      <span class="leaderboard-score">2.420 XP</span>
+    </div>
+    <div class="leaderboard-item">
+      <span class="leaderboard-rank">#4</span>
+      <div class="leaderboard-avatar" style="background:var(--accent-purple);">C</div>
+      <span class="leaderboard-name">Casey</span>
+      <span class="leaderboard-score">2.180 XP</span>
+    </div>
+    <div class="leaderboard-item">
+      <span class="leaderboard-rank">#5</span>
+      <div class="leaderboard-avatar" style="background:var(--accent-pink);">M</div>
+      <span class="leaderboard-name">Morgan <span class="badge">🔥 7+ dias</span></span>
+      <span class="leaderboard-score">1.950 XP</span>
+    </div>
+  </div>
+</section>
 
-  <script>
-  // ===== JAVASCRIPT COMPLETO =====
+<!-- ===== FEATURES ===== -->
+<section class="section" style="background:var(--bg-secondary);border-radius:var(--radius);padding:60px 32px;">
+  <div class="section-header">
+    <h2>✨ Tudo o que você precisa para aprender</h2>
+    <p>Leia, ouça, teste-se, pergunte à IA ou revise conteúdos anteriores</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="icon">📖</span>
+      <h3>Lições interativas</h3>
+      <p>Aprenda com exemplos práticos e exercícios que você resolve no navegador.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">🎧</span>
+      <h3>Áudio explicativo</h3>
+      <p>Ouça as explicações em áudio enquanto codifica. Aprenda no seu ritmo.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">🤖</span>
+      <h3>Assistente de IA</h3>
+      <p>Peça ajuda quando ficar travado. O assistente te guia sem dar a resposta pronta.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">📱</span>
+      <h3>Disponível em todo lugar</h3>
+      <p>Web, iOS e Android. Seu progresso sincroniza automaticamente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFICATE ===== -->
+<section class="section">
+  <div class="section-header">
+    <h2>🎓 Comprove suas habilidades</h2>
+    <p>Ganhe certificados verificáveis para cada curso concluído</p>
+  </div>
+
+  <div class="certificate-card">
+    <div class="seal">📜</div>
+    <h3>Certificado de Conclusão</h3>
+    <div class="sub">Certifica que <strong>João Silva</strong> concluiu com êxito</div>
+    <div class="course-name">Python Fundamentos</div>
+    <div style="color:var(--text-secondary);font-size:14px;margin:8px 0 20px;">📅 Concluído em 15 de janeiro de 2026</div>
+    <button class="btn-download">⬇ Baixar PDF</button>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section">
+  <div class="section-header">
+    <h2>❓ Perguntas frequentes</h2>
+  </div>
+
+  <div class="faq-grid">
+    <div class="faq-item open" onclick="toggleFaq(this)">
+      <h4>O DevCademy é gratuito? <span class="arrow">▼</span></h4>
+      <p>Sim! O DevCademy é completamente gratuito para começar. Você pode fazer dezenas de cursos interativos, construir ofensivas e ganhar XP sem pagar nada. Oferecemos um plano premium com recursos extras para quem quer mais.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Quanto tempo leva para aprender a programar? <span class="arrow">▼</span></h4>
+      <p>A maioria dos iniciantes consegue escrever código útil em 1-2 meses de prática consistente. Levar de 6 a 12 meses para atingir um nível profissional. Com as lições curtas do DevCademy, você pode progredir com apenas 15 minutos por dia.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Qual linguagem devo aprender primeiro? <span class="arrow">▼</span></h4>
+      <p>Para a maioria dos iniciantes, Python é a mais fácil de começar. Se quiser criar sites, comece com HTML, CSS e JavaScript. Nosso questionário de onboarding recomenda a melhor linguagem para seus objetivos.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Posso obter um certificado? <span class="arrow">▼</span></h4>
+      <p>Sim! Todo curso concluído no DevCademy vem com um certificado verificável. Você pode baixar em PDF e adicionar ao seu LinkedIn ou currículo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="links">
+    <a href="#">Sobre</a>
+    <a href="#">Cursos</a>
+    <a href="#">Blog</a>
+    <a href="#">Carreiras</a>
+    <a href="#">Privacidade</a>
+    <a href="#">Termos</a>
+  </div>
+  <p>© 2026 DevCademy. Aprender a programar nunca foi tão divertido. 🚀</p>
+</footer>
+
+<script>
+// ===== JAVASCRIPT COMPLETO =====
+
+// === SCROLL TO COURSES ===
+function scrollToCourses() {
+  document.getElementById('coursesSection').scrollIntoView({ behavior: 'smooth' });
+}
+
+// === FAQ TOGGLE ===
+function toggleFaq(element) {
+  element.classList.toggle('open');
+}
+
+// === GENERATE CALENDAR ===
+function generateCalendar() {
+  const calendar = document.getElementById('calendar');
+  const days = 31;
+  const activeDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const frozenDays = [4, 8];
   
-  // Quiz Data
-  const quizData = {
-    kahhot: {
-      title: 'Kahhot!',
-      questions: [
-        {
-          question: 'Qual operador é usado para verificar se dois valores são iguais em PHP?',
-          options: ['A =', 'B ==', 'C ===', 'D !='],
-          correct: 1
-        },
-        {
-          question: 'Qual é a saída de echo 5 + "5" em PHP?',
-          options: ['A 10', 'B 55', 'C Erro', 'D 5'],
-          correct: 0
-        },
-        {
-          question: 'Qual operador lógico representa "E" em PHP?',
-          options: ['A OR', 'B XOR', 'C AND', 'D NOT'],
-          correct: 2
-        },
-        {
-          question: 'O que significa "IA" em programação?',
-          options: ['A Inteligência Artificial', 'B Internet Avançada', 'C Interface Automatizada', 'D Intranet Amigável'],
-          correct: 0
-        },
-        {
-          question: 'Qual função é usada para obter o tipo de uma variável em PHP?',
-          options: ['A typeof()', 'B gettype()', 'C var_dump()', 'D type()'],
-          correct: 1
-        },
-        {
-          question: 'O que retorna o operador "===" em PHP?',
-          options: ['A Comparação de valor', 'B Comparação de tipo e valor', 'C Atribuição', 'D Negação'],
-          correct: 1
-        },
-        {
-          question: 'Qual estrutura de controle é usada para decisões em PHP?',
-          options: ['A for', 'B while', 'C if', 'D foreach'],
-          correct: 2
-        },
-        {
-          question: 'O que significa "XOR" em PHP?',
-          options: ['A OU exclusivo', 'B E', 'C OU', 'D NÃO'],
-          correct: 0
-        },
-        {
-          question: 'Qual é a extensão padrão de arquivos PHP?',
-          options: ['A .html', 'B .php', 'C .js', 'D .css'],
-          correct: 1
-        },
-        {
-          question: 'O que a função "echo" faz em PHP?',
-          options: ['A Executa código', 'B Exibe texto', 'C Retorna valor', 'D Define variável'],
-          correct: 1
-        }
-      ]
-    },
-    blooket: {
-      title: 'Bloccket',
-      questions: [
-        {
-          question: 'O que significa IA?',
-          options: ['A Inteligência Artificial', 'B Internet Avançada', 'C Interface Automatizada', 'D Intranet Amigável'],
-          correct: 0
-        },
-        {
-          question: 'Qual símbolo representa comentário de uma linha em PHP?',
-          options: ['A /* */', 'B //', 'C #', 'D <!-- -->'],
-          correct: 1
-        },
-        {
-          question: 'Como se declara uma variável em PHP?',
-          options: ['A $var', 'B var', 'C let var', 'D const var'],
-          correct: 0
-        },
-        {
-          question: 'Qual é o resultado de 10 / 3 em PHP?',
-          options: ['A 3', 'B 3.333...', 'C 3.0', 'D Erro'],
-          correct: 1
-        },
-        {
-          question: 'Qual comando exibe informações de depuração em PHP?',
-          options: ['A echo', 'B print', 'C var_dump()', 'D console.log()'],
-          correct: 2
-        },
-        {
-          question: 'O que o operador "!" faz em PHP?',
-          options: ['A Negação', 'B Atribuição', 'C Comparação', 'D Incremento'],
-          correct: 0
-        },
-        {
-          question: 'Qual estrutura repete código enquanto condição for verdadeira?',
-          options: ['A for', 'B while', 'C if', 'D switch'],
-          correct: 1
-        },
-        {
-          question: 'Como concatenar strings em PHP?',
-          options: ['A +', 'B .', 'C ,', 'D &'],
-          correct: 1
-        },
-        {
-          question: 'Qual tipo de dado é usado para valores verdadeiro/falso em PHP?',
-          options: ['A int', 'B string', 'C boolean', 'D array'],
-          correct: 2
-        },
-        {
-          question: 'O que significa "array" em PHP?',
-          options: ['A Um número', 'B Uma string', 'C Uma coleção de dados', 'D Um objeto'],
-          correct: 2
-        }
-      ]
+  for (let i = 1; i <= days; i++) {
+    const div = document.createElement('div');
+    div.className = 'streak-day';
+    div.textContent = i;
+    
+    if (activeDays.includes(i)) {
+      div.classList.add('active');
     }
-  };
-
-  // Quiz State
-  let currentQuiz = null;
-  let currentQuestionIndex = 0;
-  let score = 0;
-  let timer = 15;
-  let timerInterval = null;
-  let isAnswered = false;
-  let selectedOption = null;
-
-  // Ranking Data
-  const rankingData = [
-    { name: 'Ana Silva', score: 3250 },
-    { name: 'João.programa', score: 2840 },
-    { name: 'Maria.dev', score: 2150 },
-    { name: 'LucasCode', score: 1980 },
-    { name: 'PedroDev', score: 1750 }
-  ];
-
-  // Start Quiz
-  function startQuiz(type = 'kahhot') {
-    const quizSection = document.getElementById('quizSection');
-    const quizTitle = document.getElementById('quizTitle');
-    
-    // Reset state
-    currentQuiz = type;
-    currentQuestionIndex = 0;
-    score = 0;
-    isAnswered = false;
-    selectedOption = null;
-    
-    // Set title
-    quizTitle.textContent = quizData[type].title;
-    
-    // Show quiz
-    quizSection.classList.add('active');
-    quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    
-    // Update total questions
-    document.getElementById('totalQuestions').textContent = quizData[type].questions.length;
-    
-    // Load first question
-    loadQuestion();
-    
-    // Start timer
-    startTimer();
-    
-    // Update ranking
-    updateRanking();
-  }
-
-  // Load Question
-  function loadQuestion() {
-    const data = quizData[currentQuiz];
-    const question = data.questions[currentQuestionIndex];
-    
-    document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
-    document.getElementById('questionText').textContent = question.question;
-    document.getElementById('scoreDisplay').textContent = score;
-    
-    // Update progress
-    const progress = ((currentQuestionIndex) / data.questions.length) * 100;
-    document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
-    
-    // Generate options
-    const optionsContainer = document.getElementById('quizOptions');
-    optionsContainer.innerHTML = '';
-    
-    const letters = ['A', 'B', 'C', 'D'];
-    question.options.forEach((option, index) => {
-      const div = document.createElement('div');
-      div.className = 'quiz-option';
-      div.innerHTML = `<span class="option-letter">${letters[index]}</span> ${option.substring(2)}`;
-      div.dataset.index = index;
-      div.onclick = () => selectOption(index);
-      optionsContainer.appendChild(div);
-    });
-    
-    // Reset state
-    isAnswered = false;
-    selectedOption = null;
-    document.getElementById('nextBtn').disabled = true;
-    
-    // Reset timer
-    timer = 15;
-    document.getElementById('timerDisplay').textContent = timer;
-  }
-
-  // Select Option
-  function selectOption(index) {
-    if (isAnswered) return;
-    
-    const data = quizData[currentQuiz];
-    const question = data.questions[currentQuestionIndex];
-    const options = document.querySelectorAll('.quiz-option');
-    
-    isAnswered = true;
-    selectedOption = index;
-    
-    // Highlight selected
-    options.forEach((opt, i) => {
-      opt.classList.remove('selected', 'correct', 'wrong');
-      if (i === index) {
-        opt.classList.add('selected');
-      }
-    });
-    
-    // Check if correct
-    if (index === question.correct) {
-      score++;
-      document.getElementById('scoreDisplay').textContent = score;
-      options[index].classList.add('correct');
-    } else {
-      options[index].classList.add('wrong');
-      options[question.correct].classList.add('correct');
+    if (frozenDays.includes(i)) {
+      div.classList.add('frozen');
+    }
+    if (i > 12) {
+      div.classList.add('future');
     }
     
-    // Enable next button
-    document.getElementById('nextBtn').disabled = false;
-    
-    // Stop timer
-    clearInterval(timerInterval);
+    calendar.appendChild(div);
   }
+}
 
-  // Next Question
-  function nextQuestion() {
-    const data = quizData[currentQuiz];
-    
-    if (currentQuestionIndex < data.questions.length - 1) {
-      currentQuestionIndex++;
-      loadQuestion();
-      startTimer();
-    } else {
-      // Quiz finished
-      finishQuiz();
-    }
-  }
-
-  // Start Timer
-  function startTimer() {
-    clearInterval(timerInterval);
-    timer = 15;
-    document.getElementById('timerDisplay').textContent = timer;
-    
-    timerInterval = setInterval(() => {
-      timer--;
-      document.getElementById('timerDisplay').textContent = timer;
-      
-      if (timer <= 0) {
-        clearInterval(timerInterval);
-        // Auto-select wrong answer if not answered
-        if (!isAnswered) {
-          const data = quizData[currentQuiz];
-          const correct = data.questions[currentQuestionIndex].correct;
-          // Show correct answer
-          const options = document.querySelectorAll('.quiz-option');
-          options[correct].classList.add('correct');
-          isAnswered = true;
-          document.getElementById('nextBtn').disabled = false;
-        }
-      }
-    }, 1000);
-  }
-
-  // Finish Quiz
-  function finishQuiz() {
-    clearInterval(timerInterval);
-    const data = quizData[currentQuiz];
-    const total = data.questions.length;
-    const percent = Math.round((score / total) * 100);
-    
-    document.getElementById('questionText').textContent = `🎉 Quiz finalizado! Você acertou ${score}/${total} (${percent}%)`;
-    document.getElementById('quizOptions').innerHTML = `
-      <div style="text-align:center;padding:30px 0;">
-        <div style="font-size:64px;margin-bottom:16px;">${percent >= 70 ? '🌟' : '💪'}</div>
-        <h3 style="margin-bottom:8px;">${percent >= 70 ? 'Parabéns!' : 'Continue praticando!'}</h3>
-        <p style="color:var(--text-dim);">${percent >= 70 ? 'Você é incrível! 🚀' : 'Você consegue melhorar! Continue estudando! 📚'}</p>
-        <button class="continue-btn" onclick="closeQuiz()" style="font-size:14px;padding:10px 30px;margin-top:12px;">
-          Voltar
-        </button>
-      </div>
-    `;
-    document.getElementById('nextBtn').style.display = 'none';
-    document.getElementById('progressPercent').textContent = '100%';
-  }
-
-  // Close Quiz
-  function closeQuiz() {
-    document.getElementById('quizSection').classList.remove('active');
-    clearInterval(timerInterval);
-    document.getElementById('nextBtn').style.display = 'block';
-  }
-
-  // Update Ranking
-  function updateRanking() {
-    const rankingList = document.getElementById('rankingList');
-    rankingList.innerHTML = '';
-    
-    const sorted = [...rankingData].sort((a, b) => b.score - a.score);
-    sorted.forEach((item, index) => {
-      const div = document.createElement('div');
-      div.className = 'ranking-item';
-      div.innerHTML = `
-        <span class="ranking-position">#${index + 1}</span>
-        <span class="ranking-name">${item.name}</span>
-        <span class="ranking-score">${item.score.toLocaleString()}</span>
-      `;
-      rankingList.appendChild(div);
-    });
-  }
-
-  // Module Click Handler
-  document.querySelectorAll('.module-card').forEach(card => {
-    card.addEventListener('click', function() {
-      if (this.classList.contains('locked')) {
-        alert('🔒 Complete o nível anterior para desbloquear este módulo!');
-        return;
-      }
-      
-      if (this.classList.contains('current')) {
-        startQuiz('kahhot');
-      } else {
-        alert('✅ Este módulo já foi concluído! Parabéns!');
+// === ANIMATE PROGRESS BARS ON SCROLL ===
+function animateProgressBars() {
+  const fills = document.querySelectorAll('.course-progress .fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        const width = fill.style.width;
+        fill.style.width = '0%';
+        setTimeout(() => {
+          fill.style.width = width;
+        }, 200);
       }
     });
+  }, { threshold: 0.3 });
+  
+  fills.forEach(fill => observer.observe(fill));
+}
+
+// === NAVIGATION ACTIVE STATE ===
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
   });
+});
 
-  // Navigation Click Handler
-  document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+// === COURSE CARD CLICK ===
+document.querySelectorAll('.course-card').forEach(card => {
+  card.addEventListener('click', function() {
+    const title = this.querySelector('h3').textContent;
+    alert(`📚 Curso: ${title}\n\n🔓 Desbloqueie este curso completando as lições anteriores!\n\nDica: Comece pelo módulo 1 e avance no seu ritmo.`);
+  });
+});
+
+// === RUN BUTTON ===
+document.querySelector('.run-btn')?.addEventListener('click', function() {
+  const tests = document.querySelectorAll('.test-badge');
+  const results = ['pass', 'pass', 'fail'];
+  tests.forEach((test, i) => {
+    test.className = `test-badge ${results[i]}`;
+    test.textContent = results[i] === 'pass' ? '✅ Teste #' + (i+1) : '❌ Teste #' + (i+1);
+  });
+  
+  this.textContent = '✅ Executado!';
+  setTimeout(() => {
+    this.textContent = '▶ Executar';
+  }, 2000);
+});
+
+// === DOWNLOAD CERTIFICATE ===
+document.querySelector('.btn-download')?.addEventListener('click', function() {
+  alert('📄 Certificado sendo gerado...\n\n✅ Certificado "Python Fundamentos" baixado com sucesso!\n\nAdicione ao seu LinkedIn e compartilhe sua conquista! 🎉');
+});
+
+// === HERO BUTTONS ===
+document.querySelector('.hero-btn.secondary')?.addEventListener('click', function() {
+  const faqSection = document.querySelector('.faq-grid');
+  faqSection.scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    document.querySelector('.faq-item')?.classList.add('open');
+  }, 500);
+});
+
+// === STREAK INTERACTION ===
+document.querySelectorAll('.streak-day:not(.future)').forEach(day => {
+  day.addEventListener('click', function() {
+    if (this.classList.contains('active')) {
+      this.classList.remove('active');
+    } else {
       this.classList.add('active');
-      
-      const page = this.dataset.page;
-      if (page === 'jornada') {
-        // Already on jornada
-      } else {
-        alert(`🚧 Página "${this.querySelector('span:last-child').textContent}" em construção!`);
-      }
-    });
+    }
   });
+});
 
-  // Play Again Button
-  document.querySelector('.play-again-btn')?.addEventListener('click', function() {
-    startQuiz('kahhot');
+// === INIT ===
+generateCalendar();
+animateProgressBars();
+
+console.log('🚀 DevCademy loaded!');
+console.log('📚 200+ courses available');
+console.log('🔥 Streak: 12 days');
+console.log('🏆 Leaderboard active');
+
+// Simulate loading animation
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.style.animationDelay = `${i * 0.1}s`;
   });
-
-  // Rank Button
-  document.querySelector('.rank-btn')?.addEventListener('click', function() {
-    alert('🏆 Ranking Global:\n\n1. Ana Silva - 3.250 XP\n2. João.programa - 2.840 XP\n3. Maria.dev - 2.150 XP\n4. LucasCode - 1.980 XP\n5. PedroDev - 1.750 XP');
-  });
-
-  // Initialize
-  console.log('🚀 I.A. Platform loaded successfully!');
-  console.log('📚 Basic Operators - Chapter 3');
-  console.log('🎮 Games: Kahhot! and Bloccket available');
-  </script>
-
+});
+</script>
 </body>
 </html>
