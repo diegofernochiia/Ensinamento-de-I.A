@@ -3,756 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I.A. — Trilha de Aprendizado</title>
+<title>I.A. — Inteligência Artificial</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-/* ===== CSS COMPLETO - TRILHA SUPER CHAMATIVA ===== */
-:root {
-  --bg: #0b0f17;
-  --sidebar-bg: #0e131c;
-  --card-bg: #141a24;
-  --card-border: #232b38;
-  --text: #f2f4f7;
-  --text-dim: #8b93a3;
-  --accent-blue: #4aa8ff;
-  --accent-orange: #e8973a;
-  --accent-green: #22c58b;
-  --accent-yellow: #f2b73d;
-  --accent-purple: #6b7ad1;
-  --accent-pink: #ec4899;
-  --accent-red: #ef4444;
-  --node-bg: #232b38;
-  --node-border: #3a4557;
-  --sidebar-w: 250px;
-  --right-w: 320px;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-html, body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  min-height: 100vh;
-}
-
-body {
-  display: grid;
-  grid-template-columns: var(--sidebar-w) 1fr var(--right-w);
-  min-height: 100vh;
-}
-
-a { color: inherit; text-decoration: none; }
-
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 4px; }
-
-/* ===== SIDEBAR ===== */
-.sidebar {
-  background: var(--sidebar-bg);
-  border-right: 1px solid var(--card-border);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: var(--sidebar-w);
-  height: 100vh;
-  padding: 28px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  z-index: 9999;
-}
-
-.logo {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 800;
-  font-size: 28px;
-  color: var(--accent-blue);
-  padding-left: 8px;
-  letter-spacing: -1px;
-}
-
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  color: var(--text-dim);
-  font-weight: 600;
-  font-size: 15px;
-  transition: all .15s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-.nav-icon { font-size: 18px; width: 22px; text-align: center; }
-.nav-item:hover { background: #1a2230; color: var(--text); }
-.nav-item.active { background: #1c2536; color: var(--text); }
-.nav-item.active::before {
-  content: '';
-  position: absolute;
-  left: -18px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 24px;
-  background: var(--accent-blue);
-  border-radius: 0 4px 4px 0;
-}
-
-/* ===== MAIN ===== */
-.content {
-  grid-column: 2;
-  padding: 28px 40px 60px;
-  max-width: 100%;
-  overflow-y: auto;
-  max-height: 100vh;
-}
-
-/* ===== BREADCRUMB ===== */
-.breadcrumb-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 20px 26px;
-  margin-bottom: 32px;
-}
-
-.crumbs {
-  font-size: 13px;
-  color: var(--text-dim);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-.crumbs a { color: var(--accent-blue); font-weight: 600; }
-.crumbs .sep { color: #4b5567; }
-.breadcrumb-card h1 {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  font-size: 26px;
-  font-weight: 700;
-}
-
-/* ===== TRILHA SUPER CHAMATIVA ===== */
-.path-section {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  padding: 32px 28px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Efeito de fundo com gradiente animado */
-.path-section::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 50%, rgba(74,168,255,0.05), transparent 60%),
-              radial-gradient(circle at 70% 80%, rgba(236,72,153,0.05), transparent 60%);
-  animation: bgPulse 8s ease-in-out infinite alternate;
-  z-index: 0;
-}
-
-@keyframes bgPulse {
-  0% { transform: scale(1) rotate(0deg); }
-  100% { transform: scale(1.1) rotate(3deg); }
-}
-
-.path-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 28px;
-  position: relative;
-  z-index: 1;
-}
-
-.path-header h2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.path-header .progress-text {
-  color: var(--text-dim);
-  font-size: 14px;
-  background: var(--bg);
-  padding: 4px 16px;
-  border-radius: 20px;
-  border: 1px solid var(--card-border);
-}
-
-.path-header .progress-text strong {
-  color: var(--accent-blue);
-}
-
-/* Container da trilha - layout horizontal com scroll */
-.path-scroll {
-  overflow-x: auto;
-  padding: 20px 10px 30px;
-  position: relative;
-  z-index: 1;
-  scroll-behavior: smooth;
-}
-
-.path-scroll::-webkit-scrollbar { height: 4px; }
-.path-scroll::-webkit-scrollbar-track { background: var(--bg); border-radius: 2px; }
-.path-scroll::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 2px; }
-
-.path-track {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: max-content;
-  padding: 0 20px;
-}
-
-/* ===== NÓS DA TRILHA ===== */
-.path-node {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.path-node:hover { transform: translateY(-4px); }
-
-/* Círculo do nó - versão super estilizada */
-.node-circle {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  background: linear-gradient(145deg, #1a2235, #232b38);
-  border: 3px solid var(--card-border);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-}
-
-/* Efeito de brilho externo */
-.node-circle::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  padding: 2px;
-  background: transparent;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  transition: all 0.4s ease;
-}
-
-/* ===== ESTADOS DOS NÓS ===== */
-
-/* COMPLETO */
-.node-circle.completed {
-  border-color: var(--accent-green);
-  background: linear-gradient(145deg, #0f2a1e, #1a2a22);
-  box-shadow: 0 0 30px rgba(34,197,94,0.2), inset 0 0 30px rgba(34,197,94,0.05);
-}
-
-.node-circle.completed::before {
-  background: conic-gradient(var(--accent-green), transparent 40%, var(--accent-green));
-  animation: spinBorder 4s linear infinite;
-}
-
-@keyframes spinBorder {
-  to { transform: rotate(360deg); }
-}
-
-.node-circle.completed .checkmark {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  width: 24px;
-  height: 24px;
-  background: var(--accent-green);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: white;
-  font-weight: 700;
-  box-shadow: 0 0 20px rgba(34,197,94,0.4);
-  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes popIn {
-  0% { transform: scale(0); }
-  100% { transform: scale(1); }
-}
-
-/* ATUAL */
-.node-circle.current {
-  border-color: var(--accent-blue);
-  background: linear-gradient(145deg, #0f1a33, #1a2a44);
-  box-shadow: 0 0 50px rgba(74,168,255,0.3), inset 0 0 30px rgba(74,168,255,0.05);
-  animation: glowPulse 2s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 30px rgba(74,168,255,0.2), inset 0 0 20px rgba(74,168,255,0.05); }
-  50% { box-shadow: 0 0 70px rgba(74,168,255,0.4), inset 0 0 40px rgba(74,168,255,0.1); }
-}
-
-.node-circle.current::before {
-  background: conic-gradient(var(--accent-blue), var(--accent-purple), var(--accent-blue));
-  animation: spinBorder 3s linear infinite;
-}
-
-.node-circle.current .pulse-ring {
-  position: absolute;
-  inset: -12px;
-  border-radius: 50%;
-  border: 2px solid rgba(74,168,255,0.2);
-  animation: ringExpand 2s ease-out infinite;
-}
-
-@keyframes ringExpand {
-  0% { transform: scale(0.8); opacity: 1; }
-  100% { transform: scale(1.4); opacity: 0; }
-}
-
-/* BLOQUEADO */
-.node-circle.locked {
-  opacity: 0.5;
-  filter: grayscale(0.6);
-  cursor: not-allowed;
-  border-color: #3a4557;
-  background: linear-gradient(145deg, #141a24, #1a2230);
-}
-
-.node-circle.locked .lock-icon {
-  position: absolute;
-  bottom: -4px;
-  right: -4px;
-  font-size: 14px;
-  background: var(--bg);
-  border-radius: 50%;
-  padding: 2px;
-}
-
-/* Label do nó */
-.node-label {
-  text-align: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-dim);
-  max-width: 90px;
-  transition: all 0.3s ease;
-}
-
-.node-label .sub {
-  display: block;
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-
-.node-circle.completed ~ .node-label .sub { color: var(--accent-green); }
-.node-circle.current ~ .node-label .sub { color: var(--accent-blue); }
-
-/* ===== CONECTORES ===== */
-.path-connector {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
-  width: 60px;
-  position: relative;
-}
-
-.connector-line {
-  width: 100%;
-  height: 4px;
-  background: var(--card-border);
-  border-radius: 2px;
-  position: relative;
-  overflow: hidden;
-}
-
-.connector-line .fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
-  border-radius: 2px;
-  transition: width 1.5s ease;
-}
-
-.connector-line .fill.active { width: 100%; }
-.connector-line .fill.partial { width: 50%; }
-
-/* Ícone no conector */
-.connector-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 14px;
-  background: var(--card-bg);
-  padding: 2px 6px;
-  border-radius: 10px;
-  border: 1px solid var(--card-border);
-  z-index: 2;
-}
-
-/* ===== EFEITO DE PARTÍCULAS ===== */
-.particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--accent-blue);
-  border-radius: 50%;
-  opacity: 0;
-  animation: floatParticle 6s ease-in-out infinite;
-}
-
-@keyframes floatParticle {
-  0% { opacity: 0; transform: translateY(100%) scale(0); }
-  20% { opacity: 0.6; }
-  80% { opacity: 0.6; }
-  100% { opacity: 0; transform: translateY(-100%) scale(1); }
-}
-
-/* ===== INFO CARD DO NÓ ===== */
-.node-info-card {
-  display: none;
-  background: var(--bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin-top: 16px;
-  position: relative;
-  z-index: 1;
-  animation: slideUp 0.4s ease;
-}
-
-.node-info-card.active {
-  display: block;
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.node-info-card .info-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-
-.node-info-card .info-row:last-child { margin-bottom: 0; }
-
-.node-info-card .label {
-  color: var(--text-dim);
-  font-size: 13px;
-}
-
-.node-info-card .value {
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.node-info-card .xp-badge {
-  background: rgba(242, 183, 61, 0.15);
-  color: var(--accent-yellow);
-  padding: 2px 12px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.node-info-card .action-btn {
-  background: var(--accent-blue);
-  color: white;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.node-info-card .action-btn:hover {
-  transform: scale(1.04);
-  box-shadow: 0 4px 20px rgba(74,168,255,0.3);
-}
-
-/* ===== RIGHT PANEL ===== */
-.right-panel {
-  grid-column: 3;
-  padding: 28px 24px 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  overflow-y: auto;
-  max-height: 100vh;
-  background: var(--bg);
-}
-
-.stat-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  padding: 8px 0;
-}
-
-.stat-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--text);
-  background: var(--card-bg);
-  padding: 4px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--card-border);
-}
-.stat-pill .ic { font-size: 16px; }
-.stat-pill.lang {
-  background: linear-gradient(135deg, #7b7ff3, #6b7ad1);
-  color: #fff;
-  border: none;
-}
-
-.panel-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 18px 20px;
-}
-
-.panel-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-.panel-head h3 {
-  margin: 0;
-  font-size: 16px;
-  font-family: 'Poppins', sans-serif;
-}
-.panel-head a {
-  color: var(--accent-blue);
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.level-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.level-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #1c2536, #232b38);
-  border: 1px solid var(--card-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--accent-blue);
-  flex-shrink: 0;
-}
-.level-info { flex: 1; }
-.level-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 15px;
-  margin-bottom: 6px;
-}
-.level-xp {
-  color: var(--accent-orange);
-  font-size: 13px;
-  font-weight: 600;
-  background: rgba(232,151,58,0.1);
-  padding: 2px 10px;
-  border-radius: 12px;
-}
-.level-bar {
-  height: 6px;
-  background: #232b38;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 6px;
-}
-.level-bar span {
-  display: block;
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
-  border-radius: 4px;
-  transition: width 1s ease;
-}
-.level-sub {
-  font-size: 13px;
-  color: var(--text-dim);
-}
-
-.league-card { border-color: rgba(74,168,255,0.2); }
-.league-badge { font-size: 28px; }
-.league-rank-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.rank-number {
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--accent-blue);
-}
-.rank-next {
-  color: var(--text-dim);
-  font-size: 13px;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1200px) {
-  body { grid-template-columns: var(--sidebar-w) 1fr; }
-  .right-panel { display: none; }
-}
-
-@media (max-width: 900px) {
-  body { display: block; }
-
-  .sidebar {
-    position: fixed;
-    top: auto;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 64px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0 6px;
-    border-right: none;
-    border-top: 1px solid var(--card-border);
-    gap: 0;
-  }
-  .logo { display: none; }
-  .nav {
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
-    gap: 0;
-  }
-  .nav-item {
-    flex-direction: column;
-    gap: 2px;
-    font-size: 10px;
-    padding: 6px 4px;
-    text-align: center;
-    border-radius: 6px;
-  }
-  .nav-item span:last-child {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 56px;
-    font-size: 9px;
-  }
-  .nav-icon { font-size: 18px; }
-  .nav-item.active::before { display: none; }
-
-  .content {
-    margin-left: 0;
-    padding: 16px 14px 80px;
-    max-width: 100%;
-    max-height: none;
-  }
-
-  .path-section { padding: 20px 14px; }
-  .path-track { gap: 8px; }
-  .node-circle { width: 60px; height: 60px; font-size: 24px; }
-  .path-connector { width: 30px; }
-  .node-label { font-size: 11px; max-width: 60px; }
-}
-
-@media (max-width: 480px) {
-  .node-circle { width: 50px; height: 50px; font-size: 20px; }
-  .path-connector { width: 20px; }
-  .node-label { font-size: 10px; max-width: 50px; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- ===== SIDEBAR ===== -->
   <aside class="sidebar">
     <div class="logo">I.A</div>
+
     <nav class="nav">
-      <a href="#" class="nav-item active"><span class="nav-icon">🚀</span><span>Jornada</span></a>
-      <a href="#" class="nav-item"><span class="nav-icon">🛠️</span><span>Prática</span></a>
-      <a href="#" class="nav-item"><span class="nav-icon">🎨</span><span>Projetos</span></a>
-      <a href="#" class="nav-item"><span class="nav-icon">🔥</span><span>Clube de Sequência</span></a>
-      <a href="#" class="nav-item"><span class="nav-icon">🚩</span><span>Missões</span></a>
-      <a href="#" class="nav-item"><span class="nav-icon">🏆</span><span>Tabela de Líderes</span></a>
-      <a href="#" class="nav-item"><span class="nav-icon">🏪</span><span>Loja</span></a>
-      <a href="#" class="nav-item"><span class="nav-icon">🕶️</span><span>Perfil</span></a>
-      <a href="#" class="nav-item"><span class="nav-icon">⋯</span><span>Mais</span></a>
+      <a href="#" class="nav-item active">
+        <span class="nav-icon">🚀</span>
+        <span>Jornada</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🛠️</span>
+        <span>Prática</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🎨</span>
+        <span>Projetos</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🔥</span>
+        <span>Clube de Sequência</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🚩</span>
+        <span>Missões</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🏆</span>
+        <span>Tabela de Líderes</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🏪</span>
+        <span>Loja</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🕶️</span>
+        <span>Perfil</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">⋯</span>
+        <span>Mais</span>
+      </a>
     </nav>
   </aside>
 
   <!-- ===== MAIN ===== -->
   <main class="content">
-
-    <!-- ===== BREADCRUMB ===== -->
-    <div class="breadcrumb-card">
+    <div class="breadcrumb-card fixed-top">
       <div class="crumbs">
         <a href="#">Programa</a>
         <span class="sep">›</span>
@@ -761,197 +66,41 @@ a { color: inherit; text-decoration: none; }
       <h1>Conditional Logic</h1>
     </div>
 
-    <!-- ===== TRILHA SUPER CHAMATIVA ===== -->
-    <div class="path-section" id="pathSection">
-      <!-- Partículas de fundo -->
-      <div class="particles" id="particles"></div>
-
-      <div class="path-header">
-        <h2>🗺️ Sua Trilha de Aprendizado</h2>
-        <span class="progress-text">Progresso: <strong>4/8</strong> completos</span>
+    <div class="path-wrap">
+      <div class="path-title">
+        <span class="rule"></span>
+        <h2>Conditional Logic</h2>
+        <span class="rule"></span>
       </div>
 
-      <div class="path-scroll">
-        <div class="path-track" id="pathTrack">
-          <!-- Nó 1 - Concluído -->
-          <div class="path-node" data-node="1" data-status="completed">
-            <div class="node-circle completed">
-              🧠
-              <span class="checkmark">✓</span>
-            </div>
-            <div class="node-label">
-              Fundamentos
-              <span class="sub">✅ Concluído</span>
-            </div>
-          </div>
-
-          <!-- Conector 1 -->
-          <div class="path-connector">
-            <div class="connector-line">
-              <div class="fill active"></div>
-            </div>
-            <span class="connector-icon">⚡</span>
-          </div>
-
-          <!-- Nó 2 - Concluído -->
-          <div class="path-node" data-node="2" data-status="completed">
-            <div class="node-circle completed">
-              💻
-              <span class="checkmark">✓</span>
-            </div>
-            <div class="node-label">
-              Sintaxe
-              <span class="sub">✅ Concluído</span>
-            </div>
-          </div>
-
-          <!-- Conector 2 -->
-          <div class="path-connector">
-            <div class="connector-line">
-              <div class="fill active"></div>
-            </div>
-            <span class="connector-icon">⚡</span>
-          </div>
-
-          <!-- Nó 3 - Concluído -->
-          <div class="path-node" data-node="3" data-status="completed">
-            <div class="node-circle completed">
-              🔄
-              <span class="checkmark">✓</span>
-            </div>
-            <div class="node-label">
-              Loops
-              <span class="sub">✅ Concluído</span>
-            </div>
-          </div>
-
-          <!-- Conector 3 -->
-          <div class="path-connector">
-            <div class="connector-line">
-              <div class="fill partial"></div>
-            </div>
-            <span class="connector-icon">🌟</span>
-          </div>
-
-          <!-- Nó 4 - Atual -->
-          <div class="path-node" data-node="4" data-status="current">
-            <div class="node-circle current">
-              🎯
-              <span class="pulse-ring"></span>
-            </div>
-            <div class="node-label">
-              Condicionais
-              <span class="sub">▶ Em andamento</span>
-            </div>
-          </div>
-
-          <!-- Conector 4 -->
-          <div class="path-connector">
-            <div class="connector-line">
-              <div class="fill" style="width:0%"></div>
-            </div>
-            <span class="connector-icon">🔒</span>
-          </div>
-
-          <!-- Nó 5 - Bloqueado -->
-          <div class="path-node" data-node="5" data-status="locked">
-            <div class="node-circle locked">
-              🔒
-              <span class="lock-icon">🔒</span>
-            </div>
-            <div class="node-label">
-              Funções
-              <span class="sub">🔒 Bloqueado</span>
-            </div>
-          </div>
-
-          <!-- Conector 5 -->
-          <div class="path-connector">
-            <div class="connector-line">
-              <div class="fill" style="width:0%"></div>
-            </div>
-            <span class="connector-icon">🔒</span>
-          </div>
-
-          <!-- Nó 6 - Bloqueado -->
-          <div class="path-node" data-node="6" data-status="locked">
-            <div class="node-circle locked">
-              📊
-              <span class="lock-icon">🔒</span>
-            </div>
-            <div class="node-label">
-              Arrays
-              <span class="sub">🔒 Bloqueado</span>
-            </div>
-          </div>
-
-          <!-- Conector 6 -->
-          <div class="path-connector">
-            <div class="connector-line">
-              <div class="fill" style="width:0%"></div>
-            </div>
-            <span class="connector-icon">🔒</span>
-          </div>
-
-          <!-- Nó 7 - Bloqueado -->
-          <div class="path-node" data-node="7" data-status="locked">
-            <div class="node-circle locked">
-              🏗️
-              <span class="lock-icon">🔒</span>
-            </div>
-            <div class="node-label">
-              Objetos
-              <span class="sub">🔒 Bloqueado</span>
-            </div>
-          </div>
-
-          <!-- Conector 7 -->
-          <div class="path-connector">
-            <div class="connector-line">
-              <div class="fill" style="width:0%"></div>
-            </div>
-            <span class="connector-icon">🏁</span>
-          </div>
-
-          <!-- Nó 8 - Bloqueado (Meta) -->
-          <div class="path-node" data-node="8" data-status="locked">
-            <div class="node-circle locked" style="border-color: var(--accent-yellow);">
-              🏆
-              <span class="lock-icon">🔒</span>
-            </div>
-            <div class="node-label">
-              Projeto Final
-              <span class="sub">🔒 Bloqueado</span>
-            </div>
-          </div>
+      <div class="path">
+        <div class="node-group current">
+          <span class="start-badge">COMEÇAR</span>
+          <div class="node active">🧠</div>
         </div>
-      </div>
-
-      <!-- Info Card do Nó -->
-      <div class="node-info-card" id="nodeInfoCard">
-        <div class="info-row">
-          <span class="label">📘 Módulo</span>
-          <span class="value" id="infoTitle">Condicionais</span>
+        <div class="connector"></div>
+        <div class="node-group offset-right">
+          <div class="node">🧠</div>
         </div>
-        <div class="info-row">
-          <span class="label">📊 Status</span>
-          <span class="value" id="infoStatus" style="color:var(--accent-blue);">Em andamento</span>
+        <div class="connector"></div>
+        <div class="node-group">
+          <div class="node">🧠</div>
         </div>
-        <div class="info-row">
-          <span class="label">⭐ XP</span>
-          <span class="xp-badge" id="infoXp">+150 XP</span>
+        <div class="connector"></div>
+        <div class="node-group offset-left">
+          <div class="node">🧠</div>
         </div>
-        <div class="info-row" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--card-border);">
-          <span class="label">🎯 Ação</span>
-          <button class="action-btn" id="infoAction">Continuar →</button>
+        <div class="connector"></div>
+        <div class="node-group">
+          <div class="node">🧠</div>
         </div>
       </div>
     </div>
-
   </main>
 
   <!-- ===== RIGHT PANEL ===== -->
   <aside class="right-panel">
+
     <div class="stat-bar">
       <div class="stat-pill lang">IA</div>
       <div class="stat-pill"><span class="ic">💧</span>99</div>
@@ -964,31 +113,33 @@ a { color: inherit; text-decoration: none; }
       <div class="level-info">
         <div class="level-row">
           <strong>Nível 26</strong>
-          <span class="level-xp">Giga</span>
         </div>
         <div class="level-bar"><span style="width:22%"></span></div>
-        <div class="level-sub">Faltam 4.005 XP</div>
+        <div class="level-sub"> · Faltam 3.331 XP</div>
       </div>
     </div>
 
-    <div class="panel-card league-card">
-      <div class="panel-head">
-        <h3>Elite Liga</h3>
-        <span class="league-badge">👑</span>
-      </div>
-      <div class="league-rank-info">
-        <span class="rank-number">Ranqueado #13</span>
-        <span class="rank-next">Só 1 XP para ultrapassar #12</span>
-      </div>
-    </div>
-
-    <div class="panel-card pro-card" style="background:linear-gradient(160deg, #172033, var(--card-bg));">
+    <div class="panel-card pro-card">
       <div class="pro-head">
         <h3>Obter mais</h3>
         <span class="pro-mascot">🐬</span>
       </div>
-      <p style="color:var(--text-dim);font-size:13.5px;line-height:1.5;margin:0 0 16px;">Desbloqueie experiência de aprendizado aprimorada e ilimitada!</p>
-      <button class="pro-btn" style="width:100%;background:var(--accent-orange);color:#241407;border:none;padding:12px;border-radius:10px;font-weight:800;font-size:14px;cursor:pointer;">SER PRO</button>
+      <p>Desbloqueie experiência de aprendizado aprimorada e ilimitada!</p>
+      <button class="pro-btn">SER PRO</button>
+    </div>
+
+    <div class="panel-card">
+      <div class="panel-head">
+        <h3>Liga Desafiante</h3>
+        <a href="#">Ver</a>
+      </div>
+      <div class="league-row">
+        <div class="league-badge">👑</div>
+        <div>
+          <div class="league-rank">Ranqueado #1 <span class="down">5</span></div>
+          <div class="league-sub">Você subiu 5 posições</div>
+        </div>
+      </div>
     </div>
 
     <div class="panel-card">
@@ -996,143 +147,29 @@ a { color: inherit; text-decoration: none; }
         <h3>Missões diárias</h3>
         <a href="#">Ver</a>
       </div>
-      <div class="mission" style="margin-bottom:12px;">
-        <div class="mission-label" style="font-size:13.5px;color:var(--text-dim);margin-bottom:8px;">Conclua uma atividade</div>
-        <div class="mission-bar" style="position:relative;height:8px;background:#232b38;border-radius:4px;margin-bottom:4px;"><span style="display:block;height:100%;width:100%;background:var(--accent-green);border-radius:4px;"></span><span class="mission-icon" style="position:absolute;right:-4px;top:50%;transform:translateY(-50%);font-size:15px;">🎯</span></div>
-        <div class="mission-count" style="text-align:right;font-size:12px;color:var(--text-dim);">1/1</div>
-      </div>
-      <div class="mission" style="margin-bottom:12px;">
-        <div class="mission-label" style="font-size:13.5px;color:var(--text-dim);margin-bottom:8px;">Ganhar 50 XP</div>
-        <div class="mission-bar" style="position:relative;height:8px;background:#232b38;border-radius:4px;margin-bottom:4px;"><span style="display:block;height:100%;width:100%;background:var(--accent-green);border-radius:4px;"></span><span class="mission-icon" style="position:absolute;right:-4px;top:50%;transform:translateY(-50%);font-size:15px;">🎯</span></div>
-        <div class="mission-count" style="text-align:right;font-size:12px;color:var(--text-dim);">50/50</div>
-      </div>
+
       <div class="mission">
-        <div class="mission-label" style="font-size:13.5px;color:var(--text-dim);margin-bottom:8px;">Conclua sem erros</div>
-        <div class="mission-bar" style="position:relative;height:8px;background:#232b38;border-radius:4px;margin-bottom:4px;"><span style="display:block;height:100%;width:35%;background:var(--accent-green);border-radius:4px;"></span><span class="mission-icon" style="position:absolute;right:-4px;top:50%;transform:translateY(-50%);font-size:15px;">🎯</span></div>
-        <div class="mission-count" style="text-align:right;font-size:12px;color:var(--text-dim);">0/1</div>
+        <div class="mission-label">Conclua uma atividade de aprendizagem</div>
+        <div class="mission-bar"><span style="width:100%"></span><span class="mission-icon">🎯</span></div>
+        <div class="mission-count">1/1</div>
+      </div>
+
+      <div class="mission">
+        <div class="mission-label">Ganhar 50 XP</div>
+        <div class="mission-bar"><span style="width:100%"></span><span class="mission-icon">🎯</span></div>
+        <div class="mission-count">50/50</div>
+      </div>
+
+      <div class="mission">
+        <div class="mission-label">Conclua uma atividade sem erros</div>
+        <div class="mission-bar"><span style="width:35%"></span><span class="mission-icon">🎯</span></div>
+        <div class="mission-count">0/1</div>
       </div>
     </div>
+
   </aside>
-
-  <script>
-  // ===== JAVASCRIPT - TRILHA SUPER CHAMATIVA =====
-
-  // === GERAR PARTÍCULAS ===
-  function createParticles() {
-    const container = document.getElementById('particles');
-    const colors = ['#4aa8ff', '#6b7ad1', '#22c58b', '#f2b73d', '#ec4899'];
-    for (let i = 0; i < 25; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      p.style.left = Math.random() * 100 + '%';
-      p.style.top = Math.random() * 100 + '%';
-      p.style.background = colors[Math.floor(Math.random() * colors.length)];
-      p.style.width = (2 + Math.random() * 4) + 'px';
-      p.style.height = p.style.width;
-      p.style.animationDelay = (Math.random() * 6) + 's';
-      p.style.animationDuration = (4 + Math.random() * 4) + 's';
-      container.appendChild(p);
-    }
-  }
-
-  // === INFO CARD DOS NÓS ===
-  const nodeData = {
-    1: { title: 'Fundamentos', status: 'Concluído', xp: '+100 XP', color: 'var(--accent-green)', action: 'Revisar' },
-    2: { title: 'Sintaxe Básica', status: 'Concluído', xp: '+120 XP', color: 'var(--accent-green)', action: 'Revisar' },
-    3: { title: 'Loops', status: 'Concluído', xp: '+130 XP', color: 'var(--accent-green)', action: 'Revisar' },
-    4: { title: 'Condicionais', status: 'Em andamento', xp: '+150 XP', color: 'var(--accent-blue)', action: 'Continuar →' },
-    5: { title: 'Funções', status: 'Bloqueado', xp: '+160 XP', color: 'var(--text-dim)', action: '🔒 Desbloquear' },
-    6: { title: 'Arrays', status: 'Bloqueado', xp: '+170 XP', color: 'var(--text-dim)', action: '🔒 Desbloquear' },
-    7: { title: 'Objetos', status: 'Bloqueado', xp: '+180 XP', color: 'var(--text-dim)', action: '🔒 Desbloquear' },
-    8: { title: 'Projeto Final', status: 'Bloqueado', xp: '+250 XP', color: 'var(--text-dim)', action: '🏆 Meta' }
-  };
-
-  function showNodeInfo(nodeId) {
-    const card = document.getElementById('nodeInfoCard');
-    const data = nodeData[nodeId];
-    if (!data) return;
-
-    document.getElementById('infoTitle').textContent = data.title;
-    document.getElementById('infoStatus').textContent = data.status;
-    document.getElementById('infoStatus').style.color = data.color;
-    document.getElementById('infoXp').textContent = data.xp;
-    document.getElementById('infoAction').textContent = data.action;
-
-    card.classList.add('active');
-  }
-
-  // === CLIQUE NOS NÓS ===
-  document.querySelectorAll('.path-node').forEach(node => {
-    node.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const nodeId = this.dataset.node;
-      const status = this.dataset.status;
-
-      // Remove destaque de todos
-      document.querySelectorAll('.path-node').forEach(n => n.style.filter = '');
-
-      if (status === 'locked') {
-        // Efeito de tremor para bloqueado
-        this.style.animation = 'shake 0.5s ease';
-        setTimeout(() => this.style.animation = '', 500);
-        showNodeInfo(nodeId);
-        return;
-      }
-
-      // Destaque o nó clicado
-      this.style.filter = 'brightness(1.2) drop-shadow(0 0 20px rgba(74,168,255,0.3))';
-      setTimeout(() => this.style.filter = '', 800);
-
-      showNodeInfo(nodeId);
-    });
-  });
-
-  // === AÇÃO DO BOTÃO NO INFO CARD ===
-  document.getElementById('infoAction').addEventListener('click', function() {
-    const title = document.getElementById('infoTitle').textContent;
-    const status = document.getElementById('infoStatus').textContent;
-
-    if (status === 'Concluído') {
-      alert(`📚 Revisando: ${title}\n\n✅ Você já concluiu este módulo! Deseja revisar o conteúdo?`);
-    } else if (status === 'Em andamento') {
-      alert(`🎯 Iniciando: ${title}\n\nVamos continuar de onde você parou! 🚀`);
-    } else if (status === 'Bloqueado') {
-      alert(`🔒 ${title} está bloqueado.\n\nComplete os módulos anteriores para desbloquear!`);
-    } else {
-      alert(`🏆 ${title} - Meta final!\n\nComplete todos os módulos para desbloquear o projeto final!`);
-    }
-  });
-
-  // === EFEITO DE SHAKE ===
-  const styleShake = document.createElement('style');
-  styleShake.textContent = `
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-8px); }
-      75% { transform: translateX(8px); }
-    }
-  `;
-  document.head.appendChild(styleShake);
-
-  // === INICIALIZAR ===
-  createParticles();
-
-  // Mostrar info do nó atual (nó 4) ao carregar
-  setTimeout(() => {
-    showNodeInfo('4');
-    // Destaque o nó atual
-    document.querySelector('.path-node[data-node="4"]').style.filter = 'brightness(1.1) drop-shadow(0 0 30px rgba(74,168,255,0.2))';
-  }, 500);
-
-  // === PRO BUTTON ===
-  document.querySelector('.pro-btn')?.addEventListener('click', function() {
-    alert('🚀 Upgrade para PRO!\n\nDesbloqueie:\n✅ Cursos ilimitados\n✅ Certificados premium\n✅ Desafios exclusivos\n✅ Suporte prioritário');
-  });
-
-  console.log('🔥 Trilha Super Chamativa carregada!');
-  console.log('🗺️ 8 módulos na trilha');
-  console.log('✨ Efeitos visuais e partículas ativos');
-  </script>
-
+  <aside>
+    
+  </aside>
 </body>
 </html>
