@@ -3,1301 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DevCademy — Aprenda a Programar</title>
+<title>I.A. — Inteligência Artificial</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-/* ===== CSS COMPLETO ===== */
-:root {
-  --bg-primary: #0a0e17;
-  --bg-secondary: #111827;
-  --bg-card: #1a2234;
-  --bg-card-hover: #1f2a3f;
-  --bg-input: #0d1421;
-  --border-color: #2a3448;
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent-blue: #3b82f6;
-  --accent-purple: #8b5cf6;
-  --accent-green: #22c55e;
-  --accent-yellow: #eab308;
-  --accent-orange: #f59e0b;
-  --accent-red: #ef4444;
-  --accent-pink: #ec4899;
-  --gradient-main: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  --shadow-card: 0 4px 20px rgba(0,0,0,0.3);
-  --radius: 12px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
-  min-height: 100vh;
-}
-
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
-
-/* ===== NAVBAR ===== */
-.navbar {
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0 32px;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(12px);
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: 900;
-  background: var(--gradient-main);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -0.5px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 8px;
-  list-style: none;
-}
-
-.nav-links a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 14px;
-  transition: var(--transition);
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--text-primary);
-  background: var(--bg-card);
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.nav-btn {
-  padding: 8px 20px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
-}
-
-.btn-outline:hover {
-  background: var(--bg-card);
-  color: var(--text-primary);
-}
-
-.btn-primary {
-  background: var(--gradient-main);
-  color: white;
-}
-
-.btn-primary:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
-}
-
-/* ===== HERO ===== */
-.hero {
-  padding: 80px 32px 60px;
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.hero-badge {
-  display: inline-block;
-  background: rgba(59, 130, 246, 0.15);
-  color: var(--accent-blue);
-  padding: 6px 18px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 24px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-}
-
-.hero h1 {
-  font-size: 52px;
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  letter-spacing: -1px;
-}
-
-.hero h1 .highlight {
-  background: var(--gradient-main);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero p {
-  font-size: 20px;
-  color: var(--text-secondary);
-  max-width: 640px;
-  margin: 0 auto 32px;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.hero-btn {
-  padding: 14px 36px;
-  border-radius: 10px;
-  border: none;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.hero-btn.primary {
-  background: var(--gradient-main);
-  color: white;
-}
-
-.hero-btn.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
-}
-
-.hero-btn.secondary {
-  background: var(--bg-card);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-}
-
-.hero-btn.secondary:hover {
-  background: var(--bg-card-hover);
-  transform: translateY(-2px);
-}
-
-/* ===== STATS BAR ===== */
-.stats-bar {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  padding: 40px 32px;
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-  background: var(--bg-secondary);
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-number {
-  font-size: 32px;
-  font-weight: 800;
-  background: var(--gradient-main);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.stat-label {
-  color: var(--text-secondary);
-  font-size: 14px;
-  margin-top: 4px;
-}
-
-/* ===== SECTION ===== */
-.section {
-  padding: 60px 32px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.section-header h2 {
-  font-size: 36px;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
-
-.section-header p {
-  color: var(--text-secondary);
-  font-size: 18px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* ===== COURSE GRID ===== */
-.course-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-.course-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 24px;
-  transition: var(--transition);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.course-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent-blue);
-  box-shadow: var(--shadow-card);
-}
-
-.course-card .icon {
-  font-size: 36px;
-  margin-bottom: 12px;
-  display: block;
-}
-
-.course-card h3 {
-  font-size: 18px;
-  margin-bottom: 6px;
-}
-
-.course-card p {
-  color: var(--text-secondary);
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
-.course-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.course-progress {
-  height: 4px;
-  background: var(--bg-input);
-  border-radius: 2px;
-  margin-top: 12px;
-  overflow: hidden;
-}
-
-.course-progress .fill {
-  height: 100%;
-  background: var(--gradient-main);
-  border-radius: 2px;
-  transition: width 0.6s ease;
-}
-
-/* ===== CODE EDITOR ===== */
-.editor-section {
-  background: var(--bg-secondary);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-color);
-  overflow: hidden;
-  margin: 32px 0;
-}
-
-.editor-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.editor-tabs {
-  display: flex;
-  gap: 4px;
-}
-
-.editor-tab {
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.editor-tab.active {
-  background: var(--bg-input);
-  color: var(--text-primary);
-}
-
-.editor-tab:hover:not(.active) {
-  background: var(--bg-input);
-}
-
-.editor-body {
-  padding: 20px;
-  background: var(--bg-input);
-  position: relative;
-}
-
-.editor-body pre {
-  font-family: 'Fira Code', 'Consolas', monospace;
-  font-size: 14px;
-  line-height: 1.8;
-  color: var(--text-primary);
-  overflow-x: auto;
-  white-space: pre-wrap;
-}
-
-.editor-body .line-numbers {
-  color: var(--text-muted);
-  margin-right: 20px;
-  user-select: none;
-}
-
-.editor-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  background: var(--bg-card);
-  border-top: 1px solid var(--border-color);
-}
-
-.editor-footer .tests {
-  display: flex;
-  gap: 12px;
-}
-
-.test-badge {
-  padding: 4px 12px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.test-badge.pass {
-  background: rgba(34, 197, 94, 0.2);
-  color: var(--accent-green);
-}
-
-.test-badge.fail {
-  background: rgba(239, 68, 68, 0.2);
-  color: var(--accent-red);
-}
-
-.editor-footer .run-btn {
-  padding: 8px 24px;
-  background: var(--gradient-main);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.editor-footer .run-btn:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
-}
-
-/* ===== STREAK ===== */
-.streak-section {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 32px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-
-.streak-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.streak-number {
-  font-size: 56px;
-  font-weight: 900;
-  background: var(--gradient-main);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.streak-label {
-  color: var(--text-secondary);
-  font-size: 16px;
-  margin: 4px 0 20px;
-}
-
-.streak-calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-}
-
-.streak-day {
-  aspect-ratio: 1;
-  border-radius: 6px;
-  background: var(--bg-input);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.streak-day.active {
-  background: var(--accent-blue);
-  color: white;
-}
-
-.streak-day.frozen {
-  background: var(--accent-purple);
-  color: white;
-}
-
-.streak-day.future {
-  opacity: 0.3;
-}
-
-/* ===== LEADERBOARD ===== */
-.leaderboard {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.leaderboard-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--border-color);
-  transition: var(--transition);
-}
-
-.leaderboard-item:hover {
-  background: var(--bg-card-hover);
-}
-
-.leaderboard-item:last-child {
-  border-bottom: none;
-}
-
-.leaderboard-rank {
-  width: 32px;
-  font-weight: 700;
-  color: var(--text-muted);
-  font-size: 14px;
-}
-
-.leaderboard-rank.top1 { color: var(--accent-yellow); }
-.leaderboard-rank.top2 { color: var(--text-secondary); }
-.leaderboard-rank.top3 { color: var(--accent-orange); }
-
-.leaderboard-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--gradient-main);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: white;
-  font-size: 14px;
-}
-
-.leaderboard-name {
-  flex: 1;
-  font-weight: 600;
-}
-
-.leaderboard-name .badge {
-  font-size: 11px;
-  background: rgba(59, 130, 246, 0.15);
-  color: var(--accent-blue);
-  padding: 2px 10px;
-  border-radius: 10px;
-  margin-left: 8px;
-}
-
-.leaderboard-score {
-  font-weight: 700;
-  color: var(--accent-yellow);
-}
-
-/* ===== FEATURES ===== */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 24px;
-}
-
-.feature-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 28px;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.feature-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent-blue);
-}
-
-.feature-card .icon {
-  font-size: 40px;
-  margin-bottom: 16px;
-  display: block;
-}
-
-.feature-card h3 {
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-
-.feature-card p {
-  color: var(--text-secondary);
-  font-size: 14px;
-}
-
-/* ===== CERTIFICATE ===== */
-.certificate-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 40px;
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.certificate-card .seal {
-  font-size: 64px;
-  margin-bottom: 16px;
-}
-
-.certificate-card h3 {
-  font-size: 24px;
-  margin-bottom: 4px;
-}
-
-.certificate-card .sub {
-  color: var(--text-secondary);
-  margin-bottom: 16px;
-}
-
-.certificate-card .course-name {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--accent-blue);
-  padding: 8px 24px;
-  border: 2px solid var(--border-color);
-  border-radius: 8px;
-  display: inline-block;
-  margin: 12px 0;
-}
-
-.certificate-card .btn-download {
-  padding: 10px 32px;
-  background: var(--gradient-main);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.certificate-card .btn-download:hover {
-  transform: scale(1.02);
-}
-
-/* ===== FAQ ===== */
-.faq-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.faq-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 20px 24px;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.faq-item:hover {
-  border-color: var(--accent-blue);
-}
-
-.faq-item h4 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.faq-item p {
-  color: var(--text-secondary);
-  font-size: 14px;
-  display: none;
-  margin-top: 8px;
-}
-
-.faq-item.open p {
-  display: block;
-}
-
-.faq-item .arrow {
-  float: right;
-  transition: var(--transition);
-}
-
-.faq-item.open .arrow {
-  transform: rotate(180deg);
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-color);
-  padding: 40px 32px;
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
-
-.footer .links {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-
-.footer .links a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.footer .links a:hover {
-  color: var(--text-primary);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-  .streak-section {
-    grid-template-columns: 1fr;
-  }
-  
-  .faq-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0 16px;
-  }
-  
-  .nav-links {
-    display: none;
-  }
-  
-  .hero {
-    padding: 40px 16px;
-  }
-  
-  .hero h1 {
-    font-size: 32px;
-  }
-  
-  .hero p {
-    font-size: 16px;
-  }
-  
-  .stats-bar {
-    gap: 24px;
-    padding: 24px 16px;
-  }
-  
-  .section {
-    padding: 40px 16px;
-  }
-  
-  .section-header h2 {
-    font-size: 28px;
-  }
-  
-  .course-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .editor-body pre {
-    font-size: 12px;
-  }
-  
-  .editor-footer {
-    flex-direction: column;
-    gap: 12px;
-    align-items: stretch;
-  }
-  
-  .certificate-card {
-    padding: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: 26px;
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .stat-number {
-    font-size: 24px;
-  }
-  
-  .streak-number {
-    font-size: 40px;
-  }
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-up {
-  animation: fadeUp 0.6s ease forwards;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-.pulse {
-  animation: pulse 2s infinite;
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar">
-  <div class="nav-left">
-    <div class="logo">DevCademy</div>
-    <ul class="nav-links">
-      <li><a href="#" class="active">Início</a></li>
-      <li><a href="#">Cursos</a></li>
-      <li><a href="#">Liga</a></li>
-      <li><a href="#">Certificados</a></li>
-    </ul>
-  </div>
-  <div class="nav-right">
-    <button class="nav-btn btn-outline">Entrar</button>
-    <button class="nav-btn btn-primary">Começar Grátis</button>
-  </div>
-</nav>
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="logo">I.A</div>
 
-<!-- ===== HERO ===== -->
-<section class="hero fade-up">
-  <div class="hero-badge">🚀 15+ linguagens • 200+ cursos</div>
-  <h1>Aprenda a programar de forma <span class="highlight">gratuita, divertida e eficaz</span></h1>
-  <p>Escreva código real, construa projetos e conquiste certificados. Tudo no seu navegador, sem instalação.</p>
-  <div class="hero-buttons">
-    <button class="hero-btn primary" onclick="scrollToCourses()">Ver todos os cursos →</button>
-    <button class="hero-btn secondary">Como funciona?</button>
-  </div>
-</section>
+    <nav class="nav">
+      <a href="#" class="nav-item active">
+        <span class="nav-icon">🚀</span>
+        <span>Jornada</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🛠️</span>
+        <span>Prática</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🎨</span>
+        <span>Projetos</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🔥</span>
+        <span>Clube de Sequência</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🚩</span>
+        <span>Missões</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🏆</span>
+        <span>Tabela de Líderes</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🏪</span>
+        <span>Loja</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">🕶️</span>
+        <span>Perfil</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">⋯</span>
+        <span>Mais</span>
+      </a>
+    </nav>
+  </aside>
 
-<!-- ===== STATS ===== -->
-<div class="stats-bar">
-  <div class="stat-item">
-    <div class="stat-number">200+</div>
-    <div class="stat-label">Cursos interativos</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">15+</div>
-    <div class="stat-label">Linguagens</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">50K+</div>
-    <div class="stat-label">Alunos ativos</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">4.9</div>
-    <div class="stat-label">Avaliação ⭐</div>
-  </div>
-</div>
-
-<!-- ===== COURSES ===== -->
-<section class="section" id="coursesSection">
-  <div class="section-header">
-    <h2>📚 Explore o catálogo completo</h2>
-    <p>Aprenda com lições interativas em mais de 15 linguagens de programação</p>
-  </div>
-
-  <div class="course-grid">
-    <div class="course-card">
-      <span class="icon">🐍</span>
-      <h3>Python Fundamentos</h3>
-      <p>Domine a sintaxe, estruturas de dados e lógica de programação com Python.</p>
-      <div class="course-meta">
-        <span>📘 42 lições</span>
-        <span>⭐ 4.8</span>
+  <!-- ===== MAIN ===== -->
+  <main class="content">
+    <div class="breadcrumb-card fixed-top">
+      <div class="crumbs">
+        <a href="#">Programa</a>
+        <span class="sep">›</span>
+        <span>Seção 1 · Capítulo 5</span>
       </div>
-      <div class="course-progress"><div class="fill" style="width:65%"></div></div>
+      <h1>Conditional Logic</h1>
     </div>
 
-    <div class="course-card">
-      <span class="icon">🟨</span>
-      <h3>JavaScript Essencial</h3>
-      <p>Aprenda a criar interatividade na web com a linguagem mais popular do front-end.</p>
-      <div class="course-meta">
-        <span>📘 38 lições</span>
-        <span>⭐ 4.7</span>
+    <div class="path-wrap">
+      <div class="path-title">
+        <span class="rule"></span>
+        <h2>Conditional Logic</h2>
+        <span class="rule"></span>
       </div>
-      <div class="course-progress"><div class="fill" style="width:40%"></div></div>
-    </div>
 
-    <div class="course-card">
-      <span class="icon">🗄️</span>
-      <h3>SQL para Análise</h3>
-      <p>Consulte bancos de dados, filtre dados e extraia insights com SQL.</p>
-      <div class="course-meta">
-        <span>📘 28 lições</span>
-        <span>⭐ 4.9</span>
-      </div>
-      <div class="course-progress"><div class="fill" style="width:15%"></div></div>
-    </div>
-
-    <div class="course-card">
-      <span class="icon">🌐</span>
-      <h3>HTML + CSS</h3>
-      <p>Crie sites bonitos e responsivos com as bases da web moderna.</p>
-      <div class="course-meta">
-        <span>📘 34 lições</span>
-        <span>⭐ 4.6</span>
-      </div>
-      <div class="course-progress"><div class="fill" style="width:0%"></div></div>
-    </div>
-
-    <div class="course-card">
-      <span class="icon">☕</span>
-      <h3>Java para Iniciantes</h3>
-      <p>Aprenda a linguagem usada em milhões de aplicações empresariais.</p>
-      <div class="course-meta">
-        <span>📘 45 lições</span>
-        <span>⭐ 4.5</span>
-      </div>
-      <div class="course-progress"><div class="fill" style="width:10%"></div></div>
-    </div>
-
-    <div class="course-card">
-      <span class="icon">🤖</span>
-      <h3>IA com Python</h3>
-      <p>Introdução à inteligência artificial e machine learning com Python.</p>
-      <div class="course-meta">
-        <span>📘 36 lições</span>
-        <span>⭐ 4.9</span>
-      </div>
-      <div class="course-progress"><div class="fill" style="width:0%"></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CODE EDITOR ===== -->
-<section class="section">
-  <div class="section-header">
-    <h2>✏️ Aprenda fazendo</h2>
-    <p>Escreva código real no editor integrado e veja os resultados em tempo real</p>
-  </div>
-
-  <div class="editor-section">
-    <div class="editor-header">
-      <div class="editor-tabs">
-        <span class="editor-tab active">playground.js</span>
-        <span class="editor-tab">index.html</span>
-        <span class="editor-tab">style.css</span>
-      </div>
-      <span style="color:var(--text-muted);font-size:13px;">🟢 Online</span>
-    </div>
-    <div class="editor-body">
-      <pre><span class="line-numbers">1  </span><span style="color:#8b5cf6;">const</span> <span style="color:#60a5fa;">greeting</span> = <span style="color:#fbbf24;">"Olá, DevCademy!"</span>
-<span class="line-numbers">2  </span>
-<span class="line-numbers">3  </span><span style="color:#8b5cf6;">function</span> <span style="color:#60a5fa;">sayHi</span>(name) {
-<span class="line-numbers">4  </span>  <span style="color:#8b5cf6;">return</span> <span style="color:#60a5fa;">greeting</span> + <span style="color:#fbbf24;">" "</span> + name
-<span class="line-numbers">5  </span>}
-<span class="line-numbers">6  </span>
-<span class="line-numbers">7  </span><span style="color:#fbbf24;">console</span>.<span style="color:#60a5fa;">log</span>(<span style="color:#60a5fa;">sayHi</span>(<span style="color:#fbbf24;">"Alex"</span>))
-</pre>
-    </div>
-    <div class="editor-footer">
-      <div class="tests">
-        <span class="test-badge pass">✅ Teste #1</span>
-        <span class="test-badge pass">✅ Teste #2</span>
-        <span class="test-badge fail">❌ Teste #3</span>
-      </div>
-      <div style="display:flex;gap:12px;align-items:center;">
-        <span style="color:var(--text-muted);font-size:13px;">Input: "Alex" → Output: "Olá, DevCademy! Alex"</span>
-        <button class="run-btn">▶ Executar</button>
+      <div class="path">
+        <div class="node-group current">
+          <span class="start-badge">COMEÇAR</span>
+          <div class="node active">🧠</div>
+        </div>
+        <div class="connector"></div>
+        <div class="node-group offset-right">
+          <div class="node">🧠</div>
+        </div>
+        <div class="connector"></div>
+        <div class="node-group">
+          <div class="node">🧠</div>
+        </div>
+        <div class="connector"></div>
+        <div class="node-group offset-left">
+          <div class="node">🧠</div>
+        </div>
+        <div class="connector"></div>
+        <div class="node-group">
+          <div class="node">🧠</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </main>
 
-<!-- ===== STREAK ===== -->
-<section class="section">
-  <div class="streak-section">
-    <div class="streak-left">
-      <div class="streak-number">12</div>
-      <div class="streak-label">🔥 dias de ofensiva</div>
-      <p style="color:var(--text-secondary);font-size:14px;margin-bottom:16px;">Volte amanhã para manter sua ofensiva!</p>
-      <div style="display:flex;gap:16px;">
-        <span style="background:var(--bg-input);padding:6px 16px;border-radius:20px;font-size:13px;">🧊 Freeze: 2</span>
-        <span style="background:var(--bg-input);padding:6px 16px;border-radius:20px;font-size:13px;">🎯 Dia 5 de 7</span>
+  <!-- ===== RIGHT PANEL ===== -->
+  <aside class="right-panel">
+
+    <div class="stat-bar">
+      <div class="stat-pill lang">IA</div>
+      <div class="stat-pill"><span class="ic">💧</span>99</div>
+      <div class="stat-pill"><span class="ic">💎</span>99</div>
+      <div class="stat-pill"><span class="ic">❤️</span>1 / 5</div>
+    </div>
+
+    <div class="panel-card level-card">
+      <div class="level-icon">#</div>
+      <div class="level-info">
+        <div class="level-row">
+          <strong>Nível 26</strong>
+        </div>
+        <div class="level-bar"><span style="width:22%"></span></div>
+        <div class="level-sub"> · Faltam 3.331 XP</div>
       </div>
     </div>
-    <div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:12px;color:var(--text-secondary);font-size:13px;">
-        <span>Janeiro 2026</span>
-        <span>Dia 1 de 31</span>
+
+    <div class="panel-card pro-card">
+      <div class="pro-head">
+        <h3>Obter mais</h3>
+        <span class="pro-mascot">🐬</span>
       </div>
-      <div class="streak-calendar" id="calendar">
-        <!-- Generated by JS -->
+      <p>Desbloqueie experiência de aprendizado aprimorada e ilimitada!</p>
+      <button class="pro-btn">SER PRO</button>
+    </div>
+
+    <div class="panel-card">
+      <div class="panel-head">
+        <h3>Liga Desafiante</h3>
+        <a href="#">Ver</a>
+      </div>
+      <div class="league-row">
+        <div class="league-badge">👑</div>
+        <div>
+          <div class="league-rank">Ranqueado #1 <span class="down">5</span></div>
+          <div class="league-sub">Você subiu 5 posições</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ===== LEADERBOARD ===== -->
-<section class="section">
-  <div class="section-header">
-    <h2>🏆 Liga dos Desafiadores</h2>
-    <p>Os 5 melhores avançam para a próxima divisão</p>
-  </div>
+    <div class="panel-card">
+      <div class="panel-head">
+        <h3>Missões diárias</h3>
+        <a href="#">Ver</a>
+      </div>
 
-  <div class="leaderboard">
-    <div class="leaderboard-item">
-      <span class="leaderboard-rank top1">#1</span>
-      <div class="leaderboard-avatar" style="background:var(--accent-yellow);">A</div>
-      <span class="leaderboard-name">Alex <span class="badge">🔥 7+ dias</span></span>
-      <span class="leaderboard-score">2.840 XP</span>
+      <div class="mission">
+        <div class="mission-label">Conclua uma atividade de aprendizagem</div>
+        <div class="mission-bar"><span style="width:100%"></span><span class="mission-icon">🎯</span></div>
+        <div class="mission-count">1/1</div>
+      </div>
+
+      <div class="mission">
+        <div class="mission-label">Ganhar 50 XP</div>
+        <div class="mission-bar"><span style="width:100%"></span><span class="mission-icon">🎯</span></div>
+        <div class="mission-count">50/50</div>
+      </div>
+
+      <div class="mission">
+        <div class="mission-label">Conclua uma atividade sem erros</div>
+        <div class="mission-bar"><span style="width:35%"></span><span class="mission-icon">🎯</span></div>
+        <div class="mission-count">0/1</div>
+      </div>
     </div>
-    <div class="leaderboard-item">
-      <span class="leaderboard-rank top2">#2</span>
-      <div class="leaderboard-avatar" style="background:var(--text-secondary);">J</div>
-      <span class="leaderboard-name">Jordan <span class="badge">🔥 7+ dias</span></span>
-      <span class="leaderboard-score">2.650 XP</span>
-    </div>
-    <div class="leaderboard-item">
-      <span class="leaderboard-rank top3">#3</span>
-      <div class="leaderboard-avatar" style="background:var(--accent-orange);">S</div>
-      <span class="leaderboard-name">Sam <span class="badge">🔥 7+ dias</span></span>
-      <span class="leaderboard-score">2.420 XP</span>
-    </div>
-    <div class="leaderboard-item">
-      <span class="leaderboard-rank">#4</span>
-      <div class="leaderboard-avatar" style="background:var(--accent-purple);">C</div>
-      <span class="leaderboard-name">Casey</span>
-      <span class="leaderboard-score">2.180 XP</span>
-    </div>
-    <div class="leaderboard-item">
-      <span class="leaderboard-rank">#5</span>
-      <div class="leaderboard-avatar" style="background:var(--accent-pink);">M</div>
-      <span class="leaderboard-name">Morgan <span class="badge">🔥 7+ dias</span></span>
-      <span class="leaderboard-score">1.950 XP</span>
-    </div>
-  </div>
-</section>
 
-<!-- ===== FEATURES ===== -->
-<section class="section" style="background:var(--bg-secondary);border-radius:var(--radius);padding:60px 32px;">
-  <div class="section-header">
-    <h2>✨ Tudo o que você precisa para aprender</h2>
-    <p>Leia, ouça, teste-se, pergunte à IA ou revise conteúdos anteriores</p>
-  </div>
+  </aside>
 
-  <div class="features-grid">
-    <div class="feature-card">
-      <span class="icon">📖</span>
-      <h3>Lições interativas</h3>
-      <p>Aprenda com exemplos práticos e exercícios que você resolve no navegador.</p>
-    </div>
-    <div class="feature-card">
-      <span class="icon">🎧</span>
-      <h3>Áudio explicativo</h3>
-      <p>Ouça as explicações em áudio enquanto codifica. Aprenda no seu ritmo.</p>
-    </div>
-    <div class="feature-card">
-      <span class="icon">🤖</span>
-      <h3>Assistente de IA</h3>
-      <p>Peça ajuda quando ficar travado. O assistente te guia sem dar a resposta pronta.</p>
-    </div>
-    <div class="feature-card">
-      <span class="icon">📱</span>
-      <h3>Disponível em todo lugar</h3>
-      <p>Web, iOS e Android. Seu progresso sincroniza automaticamente.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CERTIFICATE ===== -->
-<section class="section">
-  <div class="section-header">
-    <h2>🎓 Comprove suas habilidades</h2>
-    <p>Ganhe certificados verificáveis para cada curso concluído</p>
-  </div>
-
-  <div class="certificate-card">
-    <div class="seal">📜</div>
-    <h3>Certificado de Conclusão</h3>
-    <div class="sub">Certifica que <strong>João Silva</strong> concluiu com êxito</div>
-    <div class="course-name">Python Fundamentos</div>
-    <div style="color:var(--text-secondary);font-size:14px;margin:8px 0 20px;">📅 Concluído em 15 de janeiro de 2026</div>
-    <button class="btn-download">⬇ Baixar PDF</button>
-  </div>
-</section>
-
-<!-- ===== FAQ ===== -->
-<section class="section">
-  <div class="section-header">
-    <h2>❓ Perguntas frequentes</h2>
-  </div>
-
-  <div class="faq-grid">
-    <div class="faq-item open" onclick="toggleFaq(this)">
-      <h4>O DevCademy é gratuito? <span class="arrow">▼</span></h4>
-      <p>Sim! O DevCademy é completamente gratuito para começar. Você pode fazer dezenas de cursos interativos, construir ofensivas e ganhar XP sem pagar nada. Oferecemos um plano premium com recursos extras para quem quer mais.</p>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <h4>Quanto tempo leva para aprender a programar? <span class="arrow">▼</span></h4>
-      <p>A maioria dos iniciantes consegue escrever código útil em 1-2 meses de prática consistente. Levar de 6 a 12 meses para atingir um nível profissional. Com as lições curtas do DevCademy, você pode progredir com apenas 15 minutos por dia.</p>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <h4>Qual linguagem devo aprender primeiro? <span class="arrow">▼</span></h4>
-      <p>Para a maioria dos iniciantes, Python é a mais fácil de começar. Se quiser criar sites, comece com HTML, CSS e JavaScript. Nosso questionário de onboarding recomenda a melhor linguagem para seus objetivos.</p>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <h4>Posso obter um certificado? <span class="arrow">▼</span></h4>
-      <p>Sim! Todo curso concluído no DevCademy vem com um certificado verificável. Você pode baixar em PDF e adicionar ao seu LinkedIn ou currículo.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="links">
-    <a href="#">Sobre</a>
-    <a href="#">Cursos</a>
-    <a href="#">Blog</a>
-    <a href="#">Carreiras</a>
-    <a href="#">Privacidade</a>
-    <a href="#">Termos</a>
-  </div>
-  <p>© 2026 DevCademy. Aprender a programar nunca foi tão divertido. 🚀</p>
-</footer>
-
-<script>
-// ===== JAVASCRIPT COMPLETO =====
-
-// === SCROLL TO COURSES ===
-function scrollToCourses() {
-  document.getElementById('coursesSection').scrollIntoView({ behavior: 'smooth' });
-}
-
-// === FAQ TOGGLE ===
-function toggleFaq(element) {
-  element.classList.toggle('open');
-}
-
-// === GENERATE CALENDAR ===
-function generateCalendar() {
-  const calendar = document.getElementById('calendar');
-  const days = 31;
-  const activeDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const frozenDays = [4, 8];
-  
-  for (let i = 1; i <= days; i++) {
-    const div = document.createElement('div');
-    div.className = 'streak-day';
-    div.textContent = i;
-    
-    if (activeDays.includes(i)) {
-      div.classList.add('active');
-    }
-    if (frozenDays.includes(i)) {
-      div.classList.add('frozen');
-    }
-    if (i > 12) {
-      div.classList.add('future');
-    }
-    
-    calendar.appendChild(div);
-  }
-}
-
-// === ANIMATE PROGRESS BARS ON SCROLL ===
-function animateProgressBars() {
-  const fills = document.querySelectorAll('.course-progress .fill');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const fill = entry.target;
-        const width = fill.style.width;
-        fill.style.width = '0%';
-        setTimeout(() => {
-          fill.style.width = width;
-        }, 200);
-      }
-    });
-  }, { threshold: 0.3 });
-  
-  fills.forEach(fill => observer.observe(fill));
-}
-
-// === NAVIGATION ACTIVE STATE ===
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-
-// === COURSE CARD CLICK ===
-document.querySelectorAll('.course-card').forEach(card => {
-  card.addEventListener('click', function() {
-    const title = this.querySelector('h3').textContent;
-    alert(`📚 Curso: ${title}\n\n🔓 Desbloqueie este curso completando as lições anteriores!\n\nDica: Comece pelo módulo 1 e avance no seu ritmo.`);
-  });
-});
-
-// === RUN BUTTON ===
-document.querySelector('.run-btn')?.addEventListener('click', function() {
-  const tests = document.querySelectorAll('.test-badge');
-  const results = ['pass', 'pass', 'fail'];
-  tests.forEach((test, i) => {
-    test.className = `test-badge ${results[i]}`;
-    test.textContent = results[i] === 'pass' ? '✅ Teste #' + (i+1) : '❌ Teste #' + (i+1);
-  });
-  
-  this.textContent = '✅ Executado!';
-  setTimeout(() => {
-    this.textContent = '▶ Executar';
-  }, 2000);
-});
-
-// === DOWNLOAD CERTIFICATE ===
-document.querySelector('.btn-download')?.addEventListener('click', function() {
-  alert('📄 Certificado sendo gerado...\n\n✅ Certificado "Python Fundamentos" baixado com sucesso!\n\nAdicione ao seu LinkedIn e compartilhe sua conquista! 🎉');
-});
-
-// === HERO BUTTONS ===
-document.querySelector('.hero-btn.secondary')?.addEventListener('click', function() {
-  const faqSection = document.querySelector('.faq-grid');
-  faqSection.scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => {
-    document.querySelector('.faq-item')?.classList.add('open');
-  }, 500);
-});
-
-// === STREAK INTERACTION ===
-document.querySelectorAll('.streak-day:not(.future)').forEach(day => {
-  day.addEventListener('click', function() {
-    if (this.classList.contains('active')) {
-      this.classList.remove('active');
-    } else {
-      this.classList.add('active');
-    }
-  });
-});
-
-// === INIT ===
-generateCalendar();
-animateProgressBars();
-
-console.log('🚀 DevCademy loaded!');
-console.log('📚 200+ courses available');
-console.log('🔥 Streak: 12 days');
-console.log('🏆 Leaderboard active');
-
-// Simulate loading animation
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.fade-up').forEach((el, i) => {
-    el.style.animationDelay = `${i * 0.1}s`;
-  });
-});
-</script>
 </body>
 </html>
