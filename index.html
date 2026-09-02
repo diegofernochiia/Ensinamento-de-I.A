@@ -7,7 +7,1253 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+/* ===== CSS COMPLETO ===== */
+:root {
+  --bg: #0b0f17;
+  --sidebar-bg: #0e131c;
+  --card-bg: #141a24;
+  --card-border: #232b38;
+  --text: #f2f4f7;
+  --text-dim: #8b93a3;
+  --accent-blue: #4aa8ff;
+  --accent-orange: #e8973a;
+  --accent-green: #22c58b;
+  --accent-yellow: #f2b73d;
+  --accent-purple: #6b7ad1;
+  --accent-red: #e74c3c;
+  --node-bg: #232b38;
+  --node-border: #3a4557;
+  --sidebar-w: 250px;
+  --right-w: 340px;
+}
+
+* { 
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+body {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr var(--right-w);
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--card-border);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  padding: 28px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+.logo {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--accent-blue);
+  padding-left: 8px;
+  letter-spacing: -1px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 15px;
+  transition: all .15s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-icon {
+  font-size: 18px;
+  width: 22px;
+  text-align: center;
+}
+
+.nav-item:hover {
+  background: #1a2230;
+  color: var(--text);
+}
+
+.nav-item.active {
+  background: #1c2536;
+  color: var(--text);
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 24px;
+  background: var(--accent-blue);
+  border-radius: 0 4px 4px 0;
+}
+
+.nav-item .badge {
+  margin-left: auto;
+  background: var(--accent-red);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+/* ===== MAIN CONTENT ===== */
+.content {
+  grid-column: 2;
+  padding: 28px 40px 60px;
+  max-width: 100%;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+/* Breadcrumb */
+.breadcrumb-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 20px 26px;
+  margin-bottom: 20px;
+}
+
+.crumbs {
+  font-size: 13px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.crumbs a {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+.crumbs a:hover {
+  text-decoration: underline;
+}
+
+.crumbs .sep { color: #4b5567; }
+
+.breadcrumb-card h1 {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.breadcrumb-sub {
+  margin: 4px 0 0;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+/* Chapter Progress */
+.chapter-progress {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.progress-percent {
+  color: var(--accent-blue);
+  font-weight: 700;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #232b38;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+  border-radius: 4px;
+  transition: width 1s ease;
+}
+
+/* Modules Grid */
+.modules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.module-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.module-card:hover {
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.module-card.completed {
+  border-left: 4px solid var(--accent-green);
+}
+
+.module-card.completed:hover {
+  border-color: var(--accent-green);
+}
+
+.module-card.current {
+  border-left: 4px solid var(--accent-blue);
+  background: #1a2235;
+}
+
+.module-card.current:hover {
+  border-color: var(--accent-blue);
+}
+
+.module-card.locked {
+  opacity: 0.6;
+  border-left: 4px solid #4b5567;
+  cursor: not-allowed;
+}
+
+.module-card.locked:hover {
+  transform: none;
+  border-color: #4b5567;
+}
+
+.module-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #232b38;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+  color: var(--text-dim);
+}
+
+.module-card.completed .module-number {
+  background: var(--accent-green);
+  color: #fff;
+}
+
+.module-card.current .module-number {
+  background: var(--accent-blue);
+  color: #fff;
+}
+
+.module-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.module-content h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.module-status {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.module-card.completed .module-status {
+  color: var(--accent-green);
+}
+
+.current-status {
+  color: var(--accent-blue) !important;
+}
+
+.locked-status {
+  color: #4b5567 !important;
+}
+
+.module-xp {
+  display: block;
+  font-size: 12px;
+  color: var(--accent-yellow);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.continue-btn {
+  background: var(--accent-blue);
+  color: #fff;
+  border: none;
+  padding: 6px 18px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 4px;
+}
+
+.continue-btn:hover {
+  background: #3a95e6;
+  transform: scale(1.05);
+}
+
+/* Brain Tip */
+.brain-tip {
+  background: linear-gradient(135deg, #1a2235, var(--card-bg));
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.tip-icon {
+  font-size: 42px;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.tip-content h3 {
+  margin: 0 0 4px;
+  color: var(--accent-yellow);
+  font-size: 16px;
+}
+
+.tip-content p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+/* Games Section */
+.games-section {
+  margin-top: 8px;
+  margin-bottom: 28px;
+}
+
+.games-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.games-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  margin: 0;
+}
+
+.games-subtitle {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin: 0;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.game-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.game-card.blooket::before {
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+}
+
+.game-card:hover::before {
+  opacity: 1;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+.game-icon {
+  font-size: 52px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.game-card h3 {
+  margin: 0 0 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+.game-card p {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+
+.game-btn {
+  border: none;
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.game-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.game-btn:active {
+  transform: scale(0.95);
+}
+
+.kahhot-btn {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: #fff;
+}
+
+.blooket-btn {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
+}
+
+/* Quiz Section */
+.quiz-section {
+  display: none;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 20px;
+  animation: slideDown 0.4s ease;
+}
+
+.quiz-section.active {
+  display: block;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.quiz-header h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+.quiz-stats {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.quiz-stats span {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.quiz-question {
+  margin-bottom: 24px;
+}
+
+.quiz-question h4 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.quiz-option {
+  background: #1a2230;
+  border: 2px solid var(--card-border);
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-weight: 500;
+}
+
+.quiz-option:hover {
+  border-color: var(--accent-blue);
+  background: #1c2536;
+}
+
+.quiz-option.selected {
+  border-color: var(--accent-blue);
+  background: #1c2536;
+}
+
+.quiz-option.correct {
+  border-color: var(--accent-green);
+  background: #1a2a22;
+}
+
+.quiz-option.wrong {
+  border-color: var(--accent-red);
+  background: #2a1a1a;
+}
+
+.quiz-option .option-letter {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--card-border);
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  margin-right: 12px;
+  font-size: 13px;
+}
+
+.quiz-option.correct .option-letter {
+  background: var(--accent-green);
+}
+
+.quiz-option.wrong .option-letter {
+  background: var(--accent-red);
+}
+
+.quiz-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+
+.quiz-progress {
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.quiz-progress span {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.quiz-nav-btn {
+  background: var(--accent-blue);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quiz-nav-btn:hover {
+  background: #3a95e6;
+  transform: scale(1.02);
+}
+
+.quiz-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.quiz-close-btn {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--card-border);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quiz-close-btn:hover {
+  background: var(--card-border);
+  color: var(--text);
+}
+
+/* Quiz Ranking */
+.quiz-ranking {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+
+.quiz-ranking h4 {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.ranking-list {
+  display: grid;
+  gap: 8px;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: #0d1119;
+  border-radius: 8px;
+}
+
+.ranking-position {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-dim);
+  width: 30px;
+}
+
+.ranking-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.ranking-score {
+  font-weight: 700;
+  color: var(--accent-yellow);
+}
+
+/* ===== RIGHT PANEL ===== */
+.right-panel {
+  grid-column: 3;
+  padding: 28px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  max-height: 100vh;
+  background: var(--bg);
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  padding: 8px 0;
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--card-bg);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+}
+
+.stat-pill .ic { font-size: 16px; }
+
+.stat-pill.lang {
+  background: linear-gradient(135deg, #7b7ff3, #6b7ad1);
+  color: #fff;
+  border: none;
+}
+
+.panel-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.panel-head h3 {
+  margin: 0;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.panel-head a {
+  color: var(--accent-blue);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.panel-head a:hover {
+  text-decoration: underline;
+}
+
+/* Level Card */
+.level-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.level-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1c2536, #232b38);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--accent-blue);
+  flex-shrink: 0;
+}
+
+.level-info { flex: 1; }
+
+.level-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.level-xp {
+  color: var(--accent-orange);
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(232, 151, 58, 0.1);
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+
+.level-bar {
+  height: 6px;
+  background: #232b38;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.level-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+  border-radius: 4px;
+  transition: width 1s ease;
+}
+
+.level-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* League Card */
+.league-card {
+  border-color: rgba(74, 168, 255, 0.2);
+}
+
+.league-card .panel-head {
+  margin-bottom: 8px;
+}
+
+.league-badge {
+  font-size: 28px;
+}
+
+.league-rank-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rank-number {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--accent-blue);
+}
+
+.rank-next {
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+/* Victory Card */
+.victory-card {
+  background: linear-gradient(135deg, #1a2235, var(--card-bg));
+  border-color: var(--accent-yellow);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.victory-card::before {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 60px;
+  opacity: 0.1;
+}
+
+.victory-badge {
+  font-size: 52px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.victory-card h3 {
+  margin: 0 0 8px;
+  color: var(--accent-yellow);
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+}
+
+.victory-card p {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+
+.victory-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.stat-item {
+  background: #0d1119;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+}
+
+.stat-label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.victory-criteria {
+  background: #0d1119;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--card-border);
+  text-align: left;
+}
+
+.victory-criteria span {
+  font-weight: 600;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 4px;
+  color: var(--accent-yellow);
+}
+
+.victory-criteria p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-dim);
+  text-align: left;
+}
+
+.victory-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.victory-actions button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.victory-actions button:hover {
+  transform: scale(1.02);
+}
+
+.rank-btn {
+  background: var(--card-border);
+  color: var(--text);
+}
+
+.rank-btn:hover {
+  background: #2a3345;
+}
+
+.play-again-btn {
+  background: var(--accent-blue);
+  color: #fff;
+}
+
+.play-again-btn:hover {
+  background: #3a95e6;
+}
+
+/* Missions */
+.mission {
+  margin-bottom: 16px;
+}
+
+.mission:last-child { margin-bottom: 0; }
+
+.mission-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.mission-bar {
+  position: relative;
+  height: 8px;
+  background: #232b38;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  overflow: hidden;
+}
+
+.mission-bar .mission-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+  border-radius: 4px;
+  transition: width 1s ease;
+}
+
+.mission-icon {
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+}
+
+.mission-count {
+  text-align: right;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  body { grid-template-columns: var(--sidebar-w) 1fr; }
+  .right-panel { display: none; }
+}
+
+@media (max-width: 992px) {
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quiz-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  body { display: block; }
+
+  .sidebar {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 6px;
+    border-right: none;
+    border-top: 1px solid var(--card-border);
+    gap: 0;
+    z-index: 9999;
+  }
+
+  .logo { display: none; }
+
+  .nav {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    gap: 0;
+  }
+
+  .nav-item {
+    flex-direction: column;
+    gap: 2px;
+    font-size: 10px;
+    padding: 6px 4px;
+    text-align: center;
+    border-radius: 6px;
+  }
+
+  .nav-item span:last-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 56px;
+    font-size: 9px;
+  }
+
+  .nav-icon { font-size: 18px; }
+  
+  .nav-item.active::before {
+    display: none;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 16px 14px 80px;
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .breadcrumb-card {
+    padding: 16px 18px;
+  }
+
+  .breadcrumb-card h1 {
+    font-size: 20px;
+  }
+
+  .victory-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .victory-actions {
+    flex-direction: column;
+  }
+  
+  .games-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumb-card h1 {
+    font-size: 18px;
+  }
+  
+  .module-card {
+    padding: 12px 14px;
+  }
+  
+  .module-content h3 {
+    font-size: 13px;
+  }
+  
+  .panel-card {
+    padding: 14px 16px;
+  }
+  
+  .victory-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== UTILITY ===== */
+.hidden {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-8 {
+  margin-top: 8px;
+}
+
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, var(--card-bg) 25%, var(--card-border) 50%, var(--card-bg) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+</style>
 </head>
 <body>
 
@@ -16,39 +1262,40 @@
     <div class="logo">I.A</div>
 
     <nav class="nav">
-      <a href="#" class="nav-item active">
+      <a href="#" class="nav-item active" data-page="jornada">
         <span class="nav-icon">🚀</span>
         <span>Jornada</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="#" class="nav-item" data-page="pratica">
         <span class="nav-icon">🛠️</span>
         <span>Prática</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="#" class="nav-item" data-page="projetos">
         <span class="nav-icon">🎨</span>
         <span>Projetos</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="#" class="nav-item" data-page="clube">
         <span class="nav-icon">🔥</span>
         <span>Clube de Sequência</span>
+        <span class="badge">3</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="#" class="nav-item" data-page="missoes">
         <span class="nav-icon">🚩</span>
         <span>Missões</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="#" class="nav-item" data-page="lideres">
         <span class="nav-icon">🏆</span>
         <span>Tabela de Líderes</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="#" class="nav-item" data-page="loja">
         <span class="nav-icon">🏪</span>
         <span>Loja</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="#" class="nav-item" data-page="perfil">
         <span class="nav-icon">🕶️</span>
         <span>Perfil</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="#" class="nav-item" data-page="mais">
         <span class="nav-icon">⋯</span>
         <span>Mais</span>
       </a>
@@ -56,43 +1303,148 @@
   </aside>
 
   <!-- ===== MAIN ===== -->
-  <main class="content">
-    <div class="breadcrumb-card fixed-top">
+  <main class="content" id="mainContent">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-card">
       <div class="crumbs">
         <a href="#">Programa</a>
         <span class="sep">›</span>
-        <span>Seção 1 · Capítulo 5</span>
+        <span>Seção 1 · Capítulo 3</span>
       </div>
-      <h1>Conditional Logic</h1>
+      <h1>Basic Operators</h1>
+      <p class="breadcrumb-sub">Aprenda os operadores básicos e sua utilização em expressões.</p>
     </div>
 
-    <div class="path-wrap">
-      <div class="path-title">
-        <span class="rule"></span>
-        <h2>Conditional Logic</h2>
-        <span class="rule"></span>
+    <!-- Chapter Progress -->
+    <div class="chapter-progress">
+      <div class="progress-header">
+        <span>Progresso do capítulo</span>
+        <span class="progress-percent">75%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:75%"></div>
+      </div>
+    </div>
+
+    <!-- Modules Grid -->
+    <div class="modules-grid" id="modulesGrid">
+      <div class="module-card completed" data-module="1">
+        <div class="module-number">1</div>
+        <div class="module-content">
+          <h3>Operadores Aritméticos</h3>
+          <span class="module-status">✅ Concluído</span>
+          <span class="module-xp">+100 XP</span>
+        </div>
       </div>
 
-      <div class="path">
-        <div class="node-group current">
-          <span class="start-badge">COMEÇAR</span>
-          <div class="node active">🧠</div>
+      <div class="module-card completed" data-module="2">
+        <div class="module-number">2</div>
+        <div class="module-content">
+          <h3>Operadores de Comparação</h3>
+          <span class="module-status">✅ Concluído</span>
+          <span class="module-xp">+100 XP</span>
         </div>
-        <div class="connector"></div>
-        <div class="node-group offset-right">
-          <div class="node">🧠</div>
+      </div>
+
+      <div class="module-card completed" data-module="3">
+        <div class="module-number">3</div>
+        <div class="module-content">
+          <h3>Operadores Lógicos</h3>
+          <span class="module-status">✅ Concluído</span>
+          <span class="module-xp">+100 XP</span>
         </div>
-        <div class="connector"></div>
-        <div class="node-group">
-          <div class="node">🧠</div>
+      </div>
+
+      <div class="module-card current" data-module="4">
+        <div class="module-number">4</div>
+        <div class="module-content">
+          <h3>Exercícios Práticos</h3>
+          <span class="module-status current-status">▶ Continue aprendendo!</span>
+          <button class="continue-btn" onclick="startQuiz()">CONTINUAR</button>
         </div>
-        <div class="connector"></div>
-        <div class="node-group offset-left">
-          <div class="node">🧠</div>
+      </div>
+
+      <div class="module-card locked" data-module="5">
+        <div class="module-number">5</div>
+        <div class="module-content">
+          <h3>Desafios</h3>
+          <span class="module-status locked-status">🔒 Complete o nível anterior para desbloquear</span>
         </div>
-        <div class="connector"></div>
-        <div class="node-group">
-          <div class="node">🧠</div>
+      </div>
+
+      <div class="module-card locked" data-module="6">
+        <div class="module-number">6</div>
+        <div class="module-content">
+          <h3>Projeto: Calculadora Simples</h3>
+          <span class="module-status locked-status">🔒 Complete o nível anterior para desbloquear</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brain Tip -->
+    <div class="brain-tip">
+      <div class="tip-icon">🧠</div>
+      <div class="tip-content">
+        <h3>Dica do Cérebro!</h3>
+        <p>Continue assim! Cada passo te deixa mais perto de seus objetivos! 🚀</p>
+      </div>
+    </div>
+
+    <!-- Games Section -->
+    <div class="games-section">
+      <div class="games-header">
+        <h2>Escolha um jogo!</h2>
+        <span class="games-subtitle">Aprenda brincando e dispute com seus amigos!</span>
+      </div>
+
+      <div class="games-grid">
+        <div class="game-card kahhot">
+          <span class="game-icon">🎮</span>
+          <h3>Kahhot!</h3>
+          <p>Responda as perguntas corretamente e seja o mais rápido!</p>
+          <button class="game-btn kahhot-btn" onclick="startQuiz('kahhot')">Jogar Kahhot!</button>
+        </div>
+
+        <div class="game-card blooket">
+          <span class="game-icon">🎯</span>
+          <h3>Bloccket</h3>
+          <p>Cada acerto te faz avançar no mapa. Chegue até a linha de chegada!</p>
+          <button class="game-btn blooket-btn" onclick="startQuiz('blooket')">Jogar Bloccket!</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Section -->
+    <div class="quiz-section" id="quizSection">
+      <div class="quiz-header">
+        <h3 id="quizTitle">Kahhot!</h3>
+        <div class="quiz-stats">
+          <span>Pergunta <span id="currentQuestion">1</span> de <span id="totalQuestions">10</span></span>
+          <span>⏱️ <span id="timerDisplay">15</span>s</span>
+          <span>🏆 <span id="scoreDisplay">0</span></span>
+          <button class="quiz-close-btn" onclick="closeQuiz()">✕ Sair</button>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <h4 id="questionText">Qual operador é usado para verificar se dois valores são iguais em PHP?</h4>
+        <div class="quiz-options" id="quizOptions">
+          <!-- Options will be inserted by JS -->
+        </div>
+      </div>
+
+      <div class="quiz-actions">
+        <div class="quiz-progress">
+          Progresso: <span id="progressPercent">0%</span>
+        </div>
+        <button class="quiz-nav-btn" id="nextBtn" onclick="nextQuestion()">Próxima →</button>
+      </div>
+
+      <!-- Ranking -->
+      <div class="quiz-ranking" id="quizRanking">
+        <h4>🏅 Ranking</h4>
+        <div class="ranking-list" id="rankingList">
+          <!-- Ranking items inserted by JS -->
         </div>
       </div>
     </div>
@@ -100,7 +1452,6 @@
 
   <!-- ===== RIGHT PANEL ===== -->
   <aside class="right-panel">
-
     <div class="stat-bar">
       <div class="stat-pill lang">IA</div>
       <div class="stat-pill"><span class="ic">💧</span>99</div>
@@ -108,41 +1459,65 @@
       <div class="stat-pill"><span class="ic">❤️</span>1 / 5</div>
     </div>
 
+    <!-- Level Card -->
     <div class="panel-card level-card">
       <div class="level-icon">#</div>
       <div class="level-info">
         <div class="level-row">
           <strong>Nível 26</strong>
+          <span class="level-xp">Giga</span>
         </div>
         <div class="level-bar"><span style="width:22%"></span></div>
-        <div class="level-sub"> · Faltam 3.331 XP</div>
+        <div class="level-sub">Faltam 4.005 XP</div>
       </div>
     </div>
 
-    <div class="panel-card pro-card">
-      <div class="pro-head">
-        <h3>Obter mais</h3>
-        <span class="pro-mascot">🐬</span>
-      </div>
-      <p>Desbloqueie experiência de aprendizado aprimorada e ilimitada!</p>
-      <button class="pro-btn">SER PRO</button>
-    </div>
-
-    <div class="panel-card">
+    <!-- League Card -->
+    <div class="panel-card league-card">
       <div class="panel-head">
-        <h3>Liga Desafiante</h3>
-        <a href="#">Ver</a>
+        <h3>Elite Liga</h3>
+        <span class="league-badge">👑</span>
       </div>
-      <div class="league-row">
-        <div class="league-badge">👑</div>
-        <div>
-          <div class="league-rank">Ranqueado #1 <span class="down">5</span></div>
-          <div class="league-sub">Você subiu 5 posições</div>
+      <div class="league-rank-info">
+        <span class="rank-number">Ranqueado #13</span>
+        <span class="rank-next">Só 1 XP para ultrapassar #12</span>
+      </div>
+    </div>
+
+    <!-- Victory Card -->
+    <div class="panel-card victory-card">
+      <span class="victory-badge">🏆</span>
+      <h3>Você é o VENCEDOR!</h3>
+      <p>Parabéns! 🎉 Você foi o mais rápido e acertou mais perguntas!</p>
+      
+      <div class="victory-stats">
+        <div class="stat-item">
+          <span class="stat-label">Tempo</span>
+          <span class="stat-value">01:23</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Acertos</span>
+          <span class="stat-value">15/15</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">XP ganho</span>
+          <span class="stat-value">+150</span>
         </div>
       </div>
+
+      <div class="victory-criteria">
+        <span>🏅 Critério de vitória</span>
+        <p>Quem responder mais rápido e com mais acertos ganha. Não adianta ser rápido e errar!</p>
+      </div>
+
+      <div class="victory-actions">
+        <button class="rank-btn">Ver ranking</button>
+        <button class="play-again-btn">Jogar novamente</button>
+      </div>
     </div>
 
-    <div class="panel-card">
+    <!-- Missions -->
+    <div class="panel-card missions-card">
       <div class="panel-head">
         <h3>Missões diárias</h3>
         <a href="#">Ver</a>
@@ -150,24 +1525,407 @@
 
       <div class="mission">
         <div class="mission-label">Conclua uma atividade de aprendizagem</div>
-        <div class="mission-bar"><span style="width:100%"></span><span class="mission-icon">🎯</span></div>
+        <div class="mission-bar">
+          <span class="mission-fill" style="width:100%"></span>
+          <span class="mission-icon">🎯</span>
+        </div>
         <div class="mission-count">1/1</div>
       </div>
 
       <div class="mission">
         <div class="mission-label">Ganhar 50 XP</div>
-        <div class="mission-bar"><span style="width:100%"></span><span class="mission-icon">🎯</span></div>
+        <div class="mission-bar">
+          <span class="mission-fill" style="width:100%"></span>
+          <span class="mission-icon">🎯</span>
+        </div>
         <div class="mission-count">50/50</div>
       </div>
 
       <div class="mission">
         <div class="mission-label">Conclua uma atividade sem erros</div>
-        <div class="mission-bar"><span style="width:35%"></span><span class="mission-icon">🎯</span></div>
+        <div class="mission-bar">
+          <span class="mission-fill" style="width:35%"></span>
+          <span class="mission-icon">🎯</span>
+        </div>
         <div class="mission-count">0/1</div>
       </div>
     </div>
-
   </aside>
+
+  <script>
+  // ===== JAVASCRIPT COMPLETO =====
+  
+  // Quiz Data
+  const quizData = {
+    kahhot: {
+      title: 'Kahhot!',
+      questions: [
+        {
+          question: 'Qual operador é usado para verificar se dois valores são iguais em PHP?',
+          options: ['A =', 'B ==', 'C ===', 'D !='],
+          correct: 1
+        },
+        {
+          question: 'Qual é a saída de echo 5 + "5" em PHP?',
+          options: ['A 10', 'B 55', 'C Erro', 'D 5'],
+          correct: 0
+        },
+        {
+          question: 'Qual operador lógico representa "E" em PHP?',
+          options: ['A OR', 'B XOR', 'C AND', 'D NOT'],
+          correct: 2
+        },
+        {
+          question: 'O que significa "IA" em programação?',
+          options: ['A Inteligência Artificial', 'B Internet Avançada', 'C Interface Automatizada', 'D Intranet Amigável'],
+          correct: 0
+        },
+        {
+          question: 'Qual função é usada para obter o tipo de uma variável em PHP?',
+          options: ['A typeof()', 'B gettype()', 'C var_dump()', 'D type()'],
+          correct: 1
+        },
+        {
+          question: 'O que retorna o operador "===" em PHP?',
+          options: ['A Comparação de valor', 'B Comparação de tipo e valor', 'C Atribuição', 'D Negação'],
+          correct: 1
+        },
+        {
+          question: 'Qual estrutura de controle é usada para decisões em PHP?',
+          options: ['A for', 'B while', 'C if', 'D foreach'],
+          correct: 2
+        },
+        {
+          question: 'O que significa "XOR" em PHP?',
+          options: ['A OU exclusivo', 'B E', 'C OU', 'D NÃO'],
+          correct: 0
+        },
+        {
+          question: 'Qual é a extensão padrão de arquivos PHP?',
+          options: ['A .html', 'B .php', 'C .js', 'D .css'],
+          correct: 1
+        },
+        {
+          question: 'O que a função "echo" faz em PHP?',
+          options: ['A Executa código', 'B Exibe texto', 'C Retorna valor', 'D Define variável'],
+          correct: 1
+        }
+      ]
+    },
+    blooket: {
+      title: 'Bloccket',
+      questions: [
+        {
+          question: 'O que significa IA?',
+          options: ['A Inteligência Artificial', 'B Internet Avançada', 'C Interface Automatizada', 'D Intranet Amigável'],
+          correct: 0
+        },
+        {
+          question: 'Qual símbolo representa comentário de uma linha em PHP?',
+          options: ['A /* */', 'B //', 'C #', 'D <!-- -->'],
+          correct: 1
+        },
+        {
+          question: 'Como se declara uma variável em PHP?',
+          options: ['A $var', 'B var', 'C let var', 'D const var'],
+          correct: 0
+        },
+        {
+          question: 'Qual é o resultado de 10 / 3 em PHP?',
+          options: ['A 3', 'B 3.333...', 'C 3.0', 'D Erro'],
+          correct: 1
+        },
+        {
+          question: 'Qual comando exibe informações de depuração em PHP?',
+          options: ['A echo', 'B print', 'C var_dump()', 'D console.log()'],
+          correct: 2
+        },
+        {
+          question: 'O que o operador "!" faz em PHP?',
+          options: ['A Negação', 'B Atribuição', 'C Comparação', 'D Incremento'],
+          correct: 0
+        },
+        {
+          question: 'Qual estrutura repete código enquanto condição for verdadeira?',
+          options: ['A for', 'B while', 'C if', 'D switch'],
+          correct: 1
+        },
+        {
+          question: 'Como concatenar strings em PHP?',
+          options: ['A +', 'B .', 'C ,', 'D &'],
+          correct: 1
+        },
+        {
+          question: 'Qual tipo de dado é usado para valores verdadeiro/falso em PHP?',
+          options: ['A int', 'B string', 'C boolean', 'D array'],
+          correct: 2
+        },
+        {
+          question: 'O que significa "array" em PHP?',
+          options: ['A Um número', 'B Uma string', 'C Uma coleção de dados', 'D Um objeto'],
+          correct: 2
+        }
+      ]
+    }
+  };
+
+  // Quiz State
+  let currentQuiz = null;
+  let currentQuestionIndex = 0;
+  let score = 0;
+  let timer = 15;
+  let timerInterval = null;
+  let isAnswered = false;
+  let selectedOption = null;
+
+  // Ranking Data
+  const rankingData = [
+    { name: 'Ana Silva', score: 3250 },
+    { name: 'João.programa', score: 2840 },
+    { name: 'Maria.dev', score: 2150 },
+    { name: 'LucasCode', score: 1980 },
+    { name: 'PedroDev', score: 1750 }
+  ];
+
+  // Start Quiz
+  function startQuiz(type = 'kahhot') {
+    const quizSection = document.getElementById('quizSection');
+    const quizTitle = document.getElementById('quizTitle');
+    
+    // Reset state
+    currentQuiz = type;
+    currentQuestionIndex = 0;
+    score = 0;
+    isAnswered = false;
+    selectedOption = null;
+    
+    // Set title
+    quizTitle.textContent = quizData[type].title;
+    
+    // Show quiz
+    quizSection.classList.add('active');
+    quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    // Update total questions
+    document.getElementById('totalQuestions').textContent = quizData[type].questions.length;
+    
+    // Load first question
+    loadQuestion();
+    
+    // Start timer
+    startTimer();
+    
+    // Update ranking
+    updateRanking();
+  }
+
+  // Load Question
+  function loadQuestion() {
+    const data = quizData[currentQuiz];
+    const question = data.questions[currentQuestionIndex];
+    
+    document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+    document.getElementById('questionText').textContent = question.question;
+    document.getElementById('scoreDisplay').textContent = score;
+    
+    // Update progress
+    const progress = ((currentQuestionIndex) / data.questions.length) * 100;
+    document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
+    
+    // Generate options
+    const optionsContainer = document.getElementById('quizOptions');
+    optionsContainer.innerHTML = '';
+    
+    const letters = ['A', 'B', 'C', 'D'];
+    question.options.forEach((option, index) => {
+      const div = document.createElement('div');
+      div.className = 'quiz-option';
+      div.innerHTML = `<span class="option-letter">${letters[index]}</span> ${option.substring(2)}`;
+      div.dataset.index = index;
+      div.onclick = () => selectOption(index);
+      optionsContainer.appendChild(div);
+    });
+    
+    // Reset state
+    isAnswered = false;
+    selectedOption = null;
+    document.getElementById('nextBtn').disabled = true;
+    
+    // Reset timer
+    timer = 15;
+    document.getElementById('timerDisplay').textContent = timer;
+  }
+
+  // Select Option
+  function selectOption(index) {
+    if (isAnswered) return;
+    
+    const data = quizData[currentQuiz];
+    const question = data.questions[currentQuestionIndex];
+    const options = document.querySelectorAll('.quiz-option');
+    
+    isAnswered = true;
+    selectedOption = index;
+    
+    // Highlight selected
+    options.forEach((opt, i) => {
+      opt.classList.remove('selected', 'correct', 'wrong');
+      if (i === index) {
+        opt.classList.add('selected');
+      }
+    });
+    
+    // Check if correct
+    if (index === question.correct) {
+      score++;
+      document.getElementById('scoreDisplay').textContent = score;
+      options[index].classList.add('correct');
+    } else {
+      options[index].classList.add('wrong');
+      options[question.correct].classList.add('correct');
+    }
+    
+    // Enable next button
+    document.getElementById('nextBtn').disabled = false;
+    
+    // Stop timer
+    clearInterval(timerInterval);
+  }
+
+  // Next Question
+  function nextQuestion() {
+    const data = quizData[currentQuiz];
+    
+    if (currentQuestionIndex < data.questions.length - 1) {
+      currentQuestionIndex++;
+      loadQuestion();
+      startTimer();
+    } else {
+      // Quiz finished
+      finishQuiz();
+    }
+  }
+
+  // Start Timer
+  function startTimer() {
+    clearInterval(timerInterval);
+    timer = 15;
+    document.getElementById('timerDisplay').textContent = timer;
+    
+    timerInterval = setInterval(() => {
+      timer--;
+      document.getElementById('timerDisplay').textContent = timer;
+      
+      if (timer <= 0) {
+        clearInterval(timerInterval);
+        // Auto-select wrong answer if not answered
+        if (!isAnswered) {
+          const data = quizData[currentQuiz];
+          const correct = data.questions[currentQuestionIndex].correct;
+          // Show correct answer
+          const options = document.querySelectorAll('.quiz-option');
+          options[correct].classList.add('correct');
+          isAnswered = true;
+          document.getElementById('nextBtn').disabled = false;
+        }
+      }
+    }, 1000);
+  }
+
+  // Finish Quiz
+  function finishQuiz() {
+    clearInterval(timerInterval);
+    const data = quizData[currentQuiz];
+    const total = data.questions.length;
+    const percent = Math.round((score / total) * 100);
+    
+    document.getElementById('questionText').textContent = `🎉 Quiz finalizado! Você acertou ${score}/${total} (${percent}%)`;
+    document.getElementById('quizOptions').innerHTML = `
+      <div style="text-align:center;padding:30px 0;">
+        <div style="font-size:64px;margin-bottom:16px;">${percent >= 70 ? '🌟' : '💪'}</div>
+        <h3 style="margin-bottom:8px;">${percent >= 70 ? 'Parabéns!' : 'Continue praticando!'}</h3>
+        <p style="color:var(--text-dim);">${percent >= 70 ? 'Você é incrível! 🚀' : 'Você consegue melhorar! Continue estudando! 📚'}</p>
+        <button class="continue-btn" onclick="closeQuiz()" style="font-size:14px;padding:10px 30px;margin-top:12px;">
+          Voltar
+        </button>
+      </div>
+    `;
+    document.getElementById('nextBtn').style.display = 'none';
+    document.getElementById('progressPercent').textContent = '100%';
+  }
+
+  // Close Quiz
+  function closeQuiz() {
+    document.getElementById('quizSection').classList.remove('active');
+    clearInterval(timerInterval);
+    document.getElementById('nextBtn').style.display = 'block';
+  }
+
+  // Update Ranking
+  function updateRanking() {
+    const rankingList = document.getElementById('rankingList');
+    rankingList.innerHTML = '';
+    
+    const sorted = [...rankingData].sort((a, b) => b.score - a.score);
+    sorted.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'ranking-item';
+      div.innerHTML = `
+        <span class="ranking-position">#${index + 1}</span>
+        <span class="ranking-name">${item.name}</span>
+        <span class="ranking-score">${item.score.toLocaleString()}</span>
+      `;
+      rankingList.appendChild(div);
+    });
+  }
+
+  // Module Click Handler
+  document.querySelectorAll('.module-card').forEach(card => {
+    card.addEventListener('click', function() {
+      if (this.classList.contains('locked')) {
+        alert('🔒 Complete o nível anterior para desbloquear este módulo!');
+        return;
+      }
+      
+      if (this.classList.contains('current')) {
+        startQuiz('kahhot');
+      } else {
+        alert('✅ Este módulo já foi concluído! Parabéns!');
+      }
+    });
+  });
+
+  // Navigation Click Handler
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      this.classList.add('active');
+      
+      const page = this.dataset.page;
+      if (page === 'jornada') {
+        // Already on jornada
+      } else {
+        alert(`🚧 Página "${this.querySelector('span:last-child').textContent}" em construção!`);
+      }
+    });
+  });
+
+  // Play Again Button
+  document.querySelector('.play-again-btn')?.addEventListener('click', function() {
+    startQuiz('kahhot');
+  });
+
+  // Rank Button
+  document.querySelector('.rank-btn')?.addEventListener('click', function() {
+    alert('🏆 Ranking Global:\n\n1. Ana Silva - 3.250 XP\n2. João.programa - 2.840 XP\n3. Maria.dev - 2.150 XP\n4. LucasCode - 1.980 XP\n5. PedroDev - 1.750 XP');
+  });
+
+  // Initialize
+  console.log('🚀 I.A. Platform loaded successfully!');
+  console.log('📚 Basic Operators - Chapter 3');
+  console.log('🎮 Games: Kahhot! and Bloccket available');
+  </script>
 
 </body>
 </html>
